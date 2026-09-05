@@ -1,0 +1,81 @@
+{
+  "app": "Snapseed",
+  "tool_namespace": "external_images",
+  "terminology": "Android function tool",
+  "tools": [
+    {
+      "name": "list_exported_images",
+      "description": "Returns a list of exported or saved Snapseed images from the shared storage directory with exact path, filename, modified time, size, and extension.",
+      "operation": "read",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "directory_path": {
+            "type": "string",
+            "description": "The directory path to scan. Defaults to '/sdcard/Pictures' if not specified."
+          },
+          "adb_path": {
+            "type": "string",
+            "description": "Path to the adb executable."
+          }
+        },
+        "required": []
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          },
+          "images": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "path": {
+                  "type": "string",
+                  "description": "Exact output path of the image."
+                },
+                "filename": {
+                  "type": "string",
+                  "description": "Name of the image file."
+                },
+                "modified_time": {
+                  "type": "integer",
+                  "description": "Last modified timestamp in milliseconds."
+                },
+                "size": {
+                  "type": "integer",
+                  "description": "File size in bytes."
+                },
+                "extension": {
+                  "type": "string",
+                  "description": "File extension/type (e.g., jpg, png)."
+                }
+              },
+              "required": [
+                "path",
+                "filename",
+                "modified_time",
+                "size",
+                "extension"
+              ]
+            }
+          }
+        },
+        "required": [
+          "success",
+          "error",
+          "images"
+        ]
+      },
+      "state_surfaces": [
+        "external_images"
+      ],
+      "safety": {}
+    }
+  ]
+}

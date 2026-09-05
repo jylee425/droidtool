@@ -1,0 +1,164 @@
+{
+  "app": "OsmAnd",
+  "tool_namespace": "favorites_gpx",
+  "terminology": "Android function tool",
+  "tools": [
+    {
+      "name": "read_favorites",
+      "description": "Parses and returns all waypoint (<wpt>) elements from the primary favorites GPX file.",
+      "operation": "read",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "adb_path": {
+            "type": "string",
+            "default": "adb",
+            "description": "Path to the adb executable"
+          }
+        },
+        "required": []
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          },
+          "favorites": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "latitude": {
+                  "type": "number"
+                },
+                "longitude": {
+                  "type": "number"
+                },
+                "description": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name",
+                "latitude",
+                "longitude"
+              ]
+            }
+          }
+        },
+        "required": [
+          "success",
+          "error",
+          "favorites"
+        ]
+      },
+      "state_surfaces": [
+        "/data/media/0/Android/data/net.osmand/files/favorites/favorites.gpx"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "add_favorite",
+      "description": "Appends a new <wpt> element with lat and lon attributes, and <name> and <desc> child elements to the GPX structure.",
+      "operation": "write",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the favorite waypoint"
+          },
+          "latitude": {
+            "type": "number",
+            "description": "Latitude in decimal degrees"
+          },
+          "longitude": {
+            "type": "number",
+            "description": "Longitude in decimal degrees"
+          },
+          "description": {
+            "type": "string",
+            "description": "Optional description or comment"
+          },
+          "adb_path": {
+            "type": "string",
+            "default": "adb",
+            "description": "Path to the adb executable"
+          }
+        },
+        "required": [
+          "name",
+          "latitude",
+          "longitude"
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "/data/media/0/Android/data/net.osmand/files/favorites/favorites.gpx"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "delete_favorite",
+      "description": "Removes the matching <wpt> element from the GPX structure.",
+      "operation": "write",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The exact name of the favorite waypoint to remove"
+          },
+          "adb_path": {
+            "type": "string",
+            "default": "adb",
+            "description": "Path to the adb executable"
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "/data/media/0/Android/data/net.osmand/files/favorites/favorites.gpx"
+      ],
+      "safety": {}
+    }
+  ]
+}

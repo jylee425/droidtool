@@ -1,0 +1,77 @@
+{
+  "app": "Contacts",
+  "tool_namespace": "contacts_ui_preferences",
+  "terminology": "Android function tool",
+  "tools": [
+    {
+      "name": "get_contacts_preferences",
+      "description": "Returns the sort_order preference value parsed from the XML. Returns empty object or default values if the preference file does not exist or the key is missing.",
+      "operation": "read",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "sort_order": {
+            "type": "string",
+            "description": "The contact sort order preference (android.contacts.SORT_ORDER)."
+          },
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "/data/data/com.google.android.contacts/shared_prefs/com.google.android.contacts.xml"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "set_contacts_sort_order",
+      "description": "Update the 'android.contacts.SORT_ORDER' key with the new value and write the XML back atomically, preserving unrelated keys and file permissions.",
+      "operation": "write",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "sort_order": {
+            "type": "string",
+            "description": "The sort order value to set for android.contacts.SORT_ORDER."
+          }
+        },
+        "required": [
+          "sort_order"
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "True if the preference was successfully updated."
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "/data/data/com.google.android.contacts/shared_prefs/com.google.android.contacts.xml"
+      ],
+      "safety": {}
+    }
+  ]
+}

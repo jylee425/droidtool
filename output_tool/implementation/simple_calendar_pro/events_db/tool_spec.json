@@ -1,0 +1,335 @@
+{
+  "app": "Simple Calendar Pro",
+  "tool_namespace": "events_db",
+  "terminology": "Android function tool",
+  "tools": [
+    {
+      "name": "create_calendar_event",
+      "description": "Inserts a new calendar event into the local events database.",
+      "operation": "write",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "The title of the calendar event."
+          },
+          "start_ts": {
+            "type": "integer",
+            "description": "Start time of the event in Unix seconds."
+          },
+          "end_ts": {
+            "type": "integer",
+            "description": "End time of the event in Unix seconds."
+          },
+          "location": {
+            "type": "string",
+            "description": "Physical or virtual location of the event."
+          },
+          "description": {
+            "type": "string",
+            "description": "Detailed description of the event."
+          },
+          "time_zone": {
+            "type": "string",
+            "description": "Time zone identifier for the event."
+          },
+          "repeat_interval": {
+            "type": "integer",
+            "description": "Recurrence interval in seconds (e.g., 0 for none, 86400 for daily, 604800 for weekly)."
+          },
+          "repeat_rule": {
+            "type": "integer",
+            "description": "Weekly recurrence rule mask where Monday is bit 0."
+          },
+          "repeat_limit": {
+            "type": "integer",
+            "description": "Unix timestamp limit for recurrence, or 0 for no limit."
+          },
+          "event_type": {
+            "type": "integer",
+            "description": "The ID of the event type category (from event_types table)."
+          },
+          "reminder_1_minutes": {
+            "type": "integer",
+            "description": "Minutes before the event for the first reminder. Use -1 for none."
+          },
+          "reminder_1_type": {
+            "type": "integer",
+            "description": "Type of the first reminder. Default is 0."
+          },
+          "adb_path": {
+            "type": "string",
+            "description": "Path to the adb executable."
+          }
+        },
+        "required": [
+          "title",
+          "start_ts",
+          "end_ts"
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The auto-generated unique ID of the newly created event."
+          },
+          "success": {
+            "type": "boolean",
+            "description": "Indicates if the event was successfully created."
+          },
+          "error": {
+            "type": "string",
+            "description": "Error message if the operation failed."
+          }
+        },
+        "required": [
+          "id",
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "/data/data/com.simplemobiletools.calendar.pro/databases/events.db"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "query_calendar_events",
+      "description": "Queries local calendar events from the database based on filters.",
+      "operation": "read",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "start_time_filter": {
+            "type": "integer",
+            "description": "Keep events whose end time is at or after this Unix timestamp."
+          },
+          "end_time_filter": {
+            "type": "integer",
+            "description": "Keep events whose start time is at or before this Unix timestamp."
+          },
+          "after_time": {
+            "type": "integer",
+            "description": "Compares only event start time; filters out events starting before this Unix timestamp."
+          },
+          "title_filter": {
+            "type": "string",
+            "description": "Case-insensitive substring match against the event title."
+          },
+          "text_search": {
+            "type": "string",
+            "description": "Case-insensitive search spanning title, description, and location fields."
+          },
+          "adb_path": {
+            "type": "string",
+            "description": "Path to the adb executable."
+          }
+        },
+        "required": []
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "events": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "start_ts": {
+                  "type": "integer"
+                },
+                "end_ts": {
+                  "type": "integer"
+                },
+                "location": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "repeat_interval": {
+                  "type": "integer"
+                },
+                "event_type": {
+                  "type": "integer"
+                },
+                "reminder_1_minutes": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "id",
+                "title",
+                "start_ts",
+                "end_ts"
+              ]
+            }
+          },
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "events",
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "/data/data/com.simplemobiletools.calendar.pro/databases/events.db"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "update_calendar_event",
+      "description": "Updates specific fields of an existing calendar event.",
+      "operation": "write",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The durable ID of the event to update."
+          },
+          "title": {
+            "type": "string"
+          },
+          "start_ts": {
+            "type": "integer"
+          },
+          "end_ts": {
+            "type": "integer"
+          },
+          "location": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "repeat_interval": {
+            "type": "integer"
+          },
+          "repeat_rule": {
+            "type": "integer"
+          },
+          "repeat_limit": {
+            "type": "integer"
+          },
+          "event_type": {
+            "type": "integer"
+          },
+          "reminder_1_minutes": {
+            "type": "integer"
+          },
+          "adb_path": {
+            "type": "string",
+            "description": "Path to the adb executable."
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "Indicates if the update was successful."
+          },
+          "rows_affected": {
+            "type": "integer",
+            "description": "The number of rows updated in the database."
+          },
+          "error": {
+            "type": "string",
+            "description": "Error message if the operation failed."
+          }
+        },
+        "required": [
+          "success",
+          "rows_affected",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "/data/data/com.simplemobiletools.calendar.pro/databases/events.db"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "delete_calendar_events",
+      "description": "Deletes calendar events matching specified filters.",
+      "operation": "delete",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "ids": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            },
+            "description": "Explicit list of durable event IDs to delete."
+          },
+          "title_filter": {
+            "type": "string",
+            "description": "Delete events matching this title."
+          },
+          "exact_title_match": {
+            "type": "boolean",
+            "description": "If true, requires exact title match. If false, performs case-insensitive substring matching."
+          },
+          "start_time_filter": {
+            "type": "integer",
+            "description": "Delete events whose end time is at or after this Unix timestamp."
+          },
+          "end_time_filter": {
+            "type": "integer",
+            "description": "Delete events whose start time is at or before this Unix timestamp."
+          },
+          "adb_path": {
+            "type": "string",
+            "description": "Path to the adb executable."
+          }
+        },
+        "required": []
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "rows_deleted": {
+            "type": "integer",
+            "description": "The number of event rows deleted."
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "rows_deleted",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "/data/data/com.simplemobiletools.calendar.pro/databases/events.db"
+      ],
+      "safety": {}
+    }
+  ]
+}

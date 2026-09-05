@@ -1,0 +1,54 @@
+{
+  "app": "OsmAnd",
+  "tool_namespace": "shared_prefs",
+  "terminology": "Android function tool",
+  "tools": [
+    {
+      "name": "get_osmand_settings",
+      "description": "Parses net.osmand.settings.xml structurally to extract application_mode, last_used_application_mode, and external_storage_dir.",
+      "operation": "read",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "adb_path": {
+            "type": "string",
+            "default": "adb",
+            "description": "Path to the adb executable"
+          }
+        },
+        "required": []
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          },
+          "application_mode": {
+            "type": "string",
+            "description": "The currently configured application mode/profile"
+          },
+          "last_used_application_mode": {
+            "type": "string",
+            "description": "The previously used application mode"
+          },
+          "external_storage_dir": {
+            "type": "string",
+            "description": "The configured external storage directory path"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "shared_prefs"
+      ],
+      "safety": {}
+    }
+  ]
+}

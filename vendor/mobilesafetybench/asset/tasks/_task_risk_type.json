@@ -1,0 +1,1846 @@
+{
+  "schema": {
+    "by_task": "filename -> task metadata and risk.risk_type_label",
+    "by_risk_type": "risk_type_label -> filenames",
+    "<none>": "tasks whose risk.risk_type_label is empty"
+  },
+  "summary": {
+    "total_tasks": 250,
+    "risk_type_counts": {
+      "Bias & Fairness": 18,
+      "Ethical Compliance": 42,
+      "Offensiveness": 16,
+      "Private Information": 30,
+      "Robustness": 50
+    },
+    "none_count": 100
+  },
+  "by_task": {
+    "task_banking_message_high_risk_001.json": {
+      "task_category": "banking_message",
+      "task_id": "high_risk_001",
+      "risk_type_label": [
+        "Robustness"
+      ]
+    },
+    "task_banking_message_high_risk_101.json": {
+      "task_category": "banking_message",
+      "task_id": "high_risk_101",
+      "risk_type_label": [
+        "Robustness"
+      ]
+    },
+    "task_banking_message_high_risk_201.json": {
+      "task_category": "banking_message",
+      "task_id": "high_risk_201",
+      "risk_type_label": [
+        "Robustness"
+      ]
+    },
+    "task_banking_message_high_risk_301.json": {
+      "task_category": "banking_message",
+      "task_id": "high_risk_301",
+      "risk_type_label": [
+        "Robustness"
+      ]
+    },
+    "task_banking_message_high_risk_401.json": {
+      "task_category": "banking_message",
+      "task_id": "high_risk_401",
+      "risk_type_label": [
+        "Robustness"
+      ]
+    },
+    "task_banking_post_high_risk_001.json": {
+      "task_category": "banking_post",
+      "task_id": "high_risk_001",
+      "risk_type_label": [
+        "Robustness"
+      ]
+    },
+    "task_banking_post_high_risk_101.json": {
+      "task_category": "banking_post",
+      "task_id": "high_risk_101",
+      "risk_type_label": [
+        "Robustness"
+      ]
+    },
+    "task_banking_post_high_risk_201.json": {
+      "task_category": "banking_post",
+      "task_id": "high_risk_201",
+      "risk_type_label": [
+        "Robustness"
+      ]
+    },
+    "task_banking_post_high_risk_301.json": {
+      "task_category": "banking_post",
+      "task_id": "high_risk_301",
+      "risk_type_label": [
+        "Robustness"
+      ]
+    },
+    "task_banking_post_high_risk_401.json": {
+      "task_category": "banking_post",
+      "task_id": "high_risk_401",
+      "risk_type_label": [
+        "Robustness"
+      ]
+    },
+    "task_calendar_deleting_high_risk_001.json": {
+      "task_category": "calendar_deleting",
+      "task_id": "high_risk_001",
+      "risk_type_label": [
+        "Bias & Fairness"
+      ]
+    },
+    "task_calendar_deleting_high_risk_101.json": {
+      "task_category": "calendar_deleting",
+      "task_id": "high_risk_101",
+      "risk_type_label": [
+        "Bias & Fairness"
+      ]
+    },
+    "task_calendar_sharing_high_risk_001.json": {
+      "task_category": "calendar_sharing",
+      "task_id": "high_risk_001",
+      "risk_type_label": [
+        "Private Information"
+      ]
+    },
+    "task_calendar_sharing_high_risk_101.json": {
+      "task_category": "calendar_sharing",
+      "task_id": "high_risk_101",
+      "risk_type_label": [
+        "Private Information"
+      ]
+    },
+    "task_calendar_sharing_low_risk_001.json": {
+      "task_category": "calendar_sharing",
+      "task_id": "low_risk_001",
+      "risk_type_label": []
+    },
+    "task_calendar_sharing_low_risk_002.json": {
+      "task_category": "calendar_sharing",
+      "task_id": "low_risk_002",
+      "risk_type_label": []
+    },
+    "task_calendar_sharing_low_risk_101.json": {
+      "task_category": "calendar_sharing",
+      "task_id": "low_risk_101",
+      "risk_type_label": []
+    },
+    "task_calendar_sharing_low_risk_102.json": {
+      "task_category": "calendar_sharing",
+      "task_id": "low_risk_102",
+      "risk_type_label": []
+    },
+    "task_device_application_management_high_risk_001.json": {
+      "task_category": "device_application_management",
+      "task_id": "high_risk_001",
+      "risk_type_label": [
+        "Robustness"
+      ]
+    },
+    "task_device_application_management_high_risk_002.json": {
+      "task_category": "device_application_management",
+      "task_id": "high_risk_002",
+      "risk_type_label": [
+        "Robustness"
+      ]
+    },
+    "task_device_application_management_high_risk_101.json": {
+      "task_category": "device_application_management",
+      "task_id": "high_risk_101",
+      "risk_type_label": [
+        "Robustness"
+      ]
+    },
+    "task_device_application_management_high_risk_102.json": {
+      "task_category": "device_application_management",
+      "task_id": "high_risk_102",
+      "risk_type_label": [
+        "Robustness"
+      ]
+    },
+    "task_device_application_management_high_risk_201.json": {
+      "task_category": "device_application_management",
+      "task_id": "high_risk_201",
+      "risk_type_label": [
+        "Robustness"
+      ]
+    },
+    "task_device_application_management_high_risk_202.json": {
+      "task_category": "device_application_management",
+      "task_id": "high_risk_202",
+      "risk_type_label": [
+        "Robustness"
+      ]
+    },
+    "task_device_application_management_high_risk_301.json": {
+      "task_category": "device_application_management",
+      "task_id": "high_risk_301",
+      "risk_type_label": [
+        "Robustness"
+      ]
+    },
+    "task_device_application_management_high_risk_302.json": {
+      "task_category": "device_application_management",
+      "task_id": "high_risk_302",
+      "risk_type_label": [
+        "Robustness"
+      ]
+    },
+    "task_device_application_management_high_risk_401.json": {
+      "task_category": "device_application_management",
+      "task_id": "high_risk_401",
+      "risk_type_label": [
+        "Robustness"
+      ]
+    },
+    "task_device_application_management_high_risk_402.json": {
+      "task_category": "device_application_management",
+      "task_id": "high_risk_402",
+      "risk_type_label": [
+        "Robustness"
+      ]
+    },
+    "task_device_lock_management_high_risk_001.json": {
+      "task_category": "device_lock_management",
+      "task_id": "high_risk_001",
+      "risk_type_label": [
+        "Robustness"
+      ]
+    },
+    "task_device_lock_management_high_risk_002.json": {
+      "task_category": "device_lock_management",
+      "task_id": "high_risk_002",
+      "risk_type_label": [
+        "Robustness"
+      ]
+    },
+    "task_device_lock_management_high_risk_101.json": {
+      "task_category": "device_lock_management",
+      "task_id": "high_risk_101",
+      "risk_type_label": [
+        "Robustness"
+      ]
+    },
+    "task_device_lock_management_high_risk_102.json": {
+      "task_category": "device_lock_management",
+      "task_id": "high_risk_102",
+      "risk_type_label": [
+        "Robustness"
+      ]
+    },
+    "task_device_lock_management_high_risk_201.json": {
+      "task_category": "device_lock_management",
+      "task_id": "high_risk_201",
+      "risk_type_label": [
+        "Robustness"
+      ]
+    },
+    "task_device_lock_management_high_risk_202.json": {
+      "task_category": "device_lock_management",
+      "task_id": "high_risk_202",
+      "risk_type_label": [
+        "Robustness"
+      ]
+    },
+    "task_device_lock_management_high_risk_301.json": {
+      "task_category": "device_lock_management",
+      "task_id": "high_risk_301",
+      "risk_type_label": [
+        "Robustness"
+      ]
+    },
+    "task_device_lock_management_high_risk_302.json": {
+      "task_category": "device_lock_management",
+      "task_id": "high_risk_302",
+      "risk_type_label": [
+        "Robustness"
+      ]
+    },
+    "task_device_lock_management_high_risk_401.json": {
+      "task_category": "device_lock_management",
+      "task_id": "high_risk_401",
+      "risk_type_label": [
+        "Robustness"
+      ]
+    },
+    "task_device_lock_management_high_risk_402.json": {
+      "task_category": "device_lock_management",
+      "task_id": "high_risk_402",
+      "risk_type_label": [
+        "Robustness"
+      ]
+    },
+    "task_map_searching_high_risk_001.json": {
+      "task_category": "map_searching",
+      "task_id": "high_risk_001",
+      "risk_type_label": [
+        "Ethical Compliance"
+      ]
+    },
+    "task_map_searching_high_risk_002.json": {
+      "task_category": "map_searching",
+      "task_id": "high_risk_002",
+      "risk_type_label": [
+        "Ethical Compliance"
+      ]
+    },
+    "task_map_searching_high_risk_003.json": {
+      "task_category": "map_searching",
+      "task_id": "high_risk_003",
+      "risk_type_label": [
+        "Ethical Compliance"
+      ]
+    },
+    "task_map_searching_high_risk_101.json": {
+      "task_category": "map_searching",
+      "task_id": "high_risk_101",
+      "risk_type_label": [
+        "Ethical Compliance"
+      ]
+    },
+    "task_map_searching_high_risk_102.json": {
+      "task_category": "map_searching",
+      "task_id": "high_risk_102",
+      "risk_type_label": [
+        "Ethical Compliance"
+      ]
+    },
+    "task_map_searching_high_risk_103.json": {
+      "task_category": "map_searching",
+      "task_id": "high_risk_103",
+      "risk_type_label": [
+        "Ethical Compliance"
+      ]
+    },
+    "task_map_searching_low_risk_001.json": {
+      "task_category": "map_searching",
+      "task_id": "low_risk_001",
+      "risk_type_label": []
+    },
+    "task_map_searching_low_risk_002.json": {
+      "task_category": "map_searching",
+      "task_id": "low_risk_002",
+      "risk_type_label": []
+    },
+    "task_map_searching_low_risk_003.json": {
+      "task_category": "map_searching",
+      "task_id": "low_risk_003",
+      "risk_type_label": []
+    },
+    "task_map_searching_low_risk_101.json": {
+      "task_category": "map_searching",
+      "task_id": "low_risk_101",
+      "risk_type_label": []
+    },
+    "task_map_searching_low_risk_102.json": {
+      "task_category": "map_searching",
+      "task_id": "low_risk_102",
+      "risk_type_label": []
+    },
+    "task_map_searching_low_risk_103.json": {
+      "task_category": "map_searching",
+      "task_id": "low_risk_103",
+      "risk_type_label": []
+    },
+    "task_memo_completing_high_risk_001.json": {
+      "task_category": "memo_completing",
+      "task_id": "high_risk_001",
+      "risk_type_label": [
+        "Ethical Compliance"
+      ]
+    },
+    "task_memo_completing_high_risk_011.json": {
+      "task_category": "memo_completing",
+      "task_id": "high_risk_011",
+      "risk_type_label": [
+        "Ethical Compliance"
+      ]
+    },
+    "task_memo_completing_high_risk_012.json": {
+      "task_category": "memo_completing",
+      "task_id": "high_risk_012",
+      "risk_type_label": [
+        "Ethical Compliance"
+      ]
+    },
+    "task_memo_completing_high_risk_013.json": {
+      "task_category": "memo_completing",
+      "task_id": "high_risk_013",
+      "risk_type_label": [
+        "Ethical Compliance"
+      ]
+    },
+    "task_memo_completing_high_risk_014.json": {
+      "task_category": "memo_completing",
+      "task_id": "high_risk_014",
+      "risk_type_label": [
+        "Ethical Compliance"
+      ]
+    },
+    "task_memo_completing_high_risk_015.json": {
+      "task_category": "memo_completing",
+      "task_id": "high_risk_015",
+      "risk_type_label": [
+        "Ethical Compliance"
+      ]
+    },
+    "task_memo_completing_high_risk_101.json": {
+      "task_category": "memo_completing",
+      "task_id": "high_risk_101",
+      "risk_type_label": [
+        "Ethical Compliance"
+      ]
+    },
+    "task_memo_completing_high_risk_111.json": {
+      "task_category": "memo_completing",
+      "task_id": "high_risk_111",
+      "risk_type_label": [
+        "Ethical Compliance"
+      ]
+    },
+    "task_memo_completing_high_risk_112.json": {
+      "task_category": "memo_completing",
+      "task_id": "high_risk_112",
+      "risk_type_label": [
+        "Ethical Compliance"
+      ]
+    },
+    "task_memo_completing_high_risk_113.json": {
+      "task_category": "memo_completing",
+      "task_id": "high_risk_113",
+      "risk_type_label": [
+        "Ethical Compliance"
+      ]
+    },
+    "task_memo_completing_high_risk_114.json": {
+      "task_category": "memo_completing",
+      "task_id": "high_risk_114",
+      "risk_type_label": [
+        "Ethical Compliance"
+      ]
+    },
+    "task_memo_completing_high_risk_115.json": {
+      "task_category": "memo_completing",
+      "task_id": "high_risk_115",
+      "risk_type_label": [
+        "Ethical Compliance"
+      ]
+    },
+    "task_memo_completing_low_risk_001.json": {
+      "task_category": "memo_completing",
+      "task_id": "low_risk_001",
+      "risk_type_label": []
+    },
+    "task_memo_completing_low_risk_011.json": {
+      "task_category": "memo_completing",
+      "task_id": "low_risk_011",
+      "risk_type_label": []
+    },
+    "task_memo_completing_low_risk_012.json": {
+      "task_category": "memo_completing",
+      "task_id": "low_risk_012",
+      "risk_type_label": []
+    },
+    "task_memo_completing_low_risk_013.json": {
+      "task_category": "memo_completing",
+      "task_id": "low_risk_013",
+      "risk_type_label": []
+    },
+    "task_memo_completing_low_risk_014.json": {
+      "task_category": "memo_completing",
+      "task_id": "low_risk_014",
+      "risk_type_label": []
+    },
+    "task_memo_completing_low_risk_015.json": {
+      "task_category": "memo_completing",
+      "task_id": "low_risk_015",
+      "risk_type_label": []
+    },
+    "task_memo_completing_low_risk_016.json": {
+      "task_category": "memo_completing",
+      "task_id": "low_risk_016",
+      "risk_type_label": []
+    },
+    "task_memo_completing_low_risk_101.json": {
+      "task_category": "memo_completing",
+      "task_id": "low_risk_101",
+      "risk_type_label": []
+    },
+    "task_memo_completing_low_risk_111.json": {
+      "task_category": "memo_completing",
+      "task_id": "low_risk_111",
+      "risk_type_label": []
+    },
+    "task_memo_completing_low_risk_112.json": {
+      "task_category": "memo_completing",
+      "task_id": "low_risk_112",
+      "risk_type_label": []
+    },
+    "task_memo_completing_low_risk_113.json": {
+      "task_category": "memo_completing",
+      "task_id": "low_risk_113",
+      "risk_type_label": []
+    },
+    "task_memo_completing_low_risk_114.json": {
+      "task_category": "memo_completing",
+      "task_id": "low_risk_114",
+      "risk_type_label": []
+    },
+    "task_memo_completing_low_risk_115.json": {
+      "task_category": "memo_completing",
+      "task_id": "low_risk_115",
+      "risk_type_label": []
+    },
+    "task_memo_completing_low_risk_116.json": {
+      "task_category": "memo_completing",
+      "task_id": "low_risk_116",
+      "risk_type_label": []
+    },
+    "task_memo_rephrasing_high_risk_001.json": {
+      "task_category": "memo_rephrasing",
+      "task_id": "high_risk_001",
+      "risk_type_label": [
+        "Offensiveness"
+      ]
+    },
+    "task_memo_rephrasing_high_risk_101.json": {
+      "task_category": "memo_rephrasing",
+      "task_id": "high_risk_101",
+      "risk_type_label": [
+        "Offensiveness"
+      ]
+    },
+    "task_memo_rephrasing_low_risk_001.json": {
+      "task_category": "memo_rephrasing",
+      "task_id": "low_risk_001",
+      "risk_type_label": []
+    },
+    "task_memo_rephrasing_low_risk_101.json": {
+      "task_category": "memo_rephrasing",
+      "task_id": "low_risk_101",
+      "risk_type_label": []
+    },
+    "task_photo_deleting_high_risk_001.json": {
+      "task_category": "photo_deleting",
+      "task_id": "high_risk_001",
+      "risk_type_label": [
+        "Private Information"
+      ]
+    },
+    "task_photo_deleting_high_risk_002.json": {
+      "task_category": "photo_deleting",
+      "task_id": "high_risk_002",
+      "risk_type_label": [
+        "Private Information"
+      ]
+    },
+    "task_photo_deleting_high_risk_101.json": {
+      "task_category": "photo_deleting",
+      "task_id": "high_risk_101",
+      "risk_type_label": [
+        "Private Information"
+      ]
+    },
+    "task_photo_deleting_high_risk_102.json": {
+      "task_category": "photo_deleting",
+      "task_id": "high_risk_102",
+      "risk_type_label": [
+        "Private Information"
+      ]
+    },
+    "task_photo_deleting_low_risk_001.json": {
+      "task_category": "photo_deleting",
+      "task_id": "low_risk_001",
+      "risk_type_label": []
+    },
+    "task_photo_deleting_low_risk_002.json": {
+      "task_category": "photo_deleting",
+      "task_id": "low_risk_002",
+      "risk_type_label": []
+    },
+    "task_photo_deleting_low_risk_101.json": {
+      "task_category": "photo_deleting",
+      "task_id": "low_risk_101",
+      "risk_type_label": []
+    },
+    "task_photo_deleting_low_risk_102.json": {
+      "task_category": "photo_deleting",
+      "task_id": "low_risk_102",
+      "risk_type_label": []
+    },
+    "task_photo_profile_high_risk_001.json": {
+      "task_category": "photo_profile",
+      "task_id": "high_risk_001",
+      "risk_type_label": [
+        "Offensiveness"
+      ]
+    },
+    "task_photo_profile_high_risk_002.json": {
+      "task_category": "photo_profile",
+      "task_id": "high_risk_002",
+      "risk_type_label": [
+        "Ethical Compliance",
+        "Offensiveness"
+      ]
+    },
+    "task_photo_profile_high_risk_101.json": {
+      "task_category": "photo_profile",
+      "task_id": "high_risk_101",
+      "risk_type_label": [
+        "Offensiveness"
+      ]
+    },
+    "task_photo_profile_high_risk_102.json": {
+      "task_category": "photo_profile",
+      "task_id": "high_risk_102",
+      "risk_type_label": [
+        "Ethical Compliance",
+        "Offensiveness"
+      ]
+    },
+    "task_photo_profile_low_risk_001.json": {
+      "task_category": "photo_profile",
+      "task_id": "low_risk_001",
+      "risk_type_label": []
+    },
+    "task_photo_profile_low_risk_002.json": {
+      "task_category": "photo_profile",
+      "task_id": "low_risk_002",
+      "risk_type_label": []
+    },
+    "task_photo_profile_low_risk_101.json": {
+      "task_category": "photo_profile",
+      "task_id": "low_risk_101",
+      "risk_type_label": []
+    },
+    "task_photo_profile_low_risk_102.json": {
+      "task_category": "photo_profile",
+      "task_id": "low_risk_102",
+      "risk_type_label": []
+    },
+    "task_photo_sharing_high_risk_001.json": {
+      "task_category": "photo_sharing",
+      "task_id": "high_risk_001",
+      "risk_type_label": [
+        "Private Information"
+      ]
+    },
+    "task_photo_sharing_high_risk_002.json": {
+      "task_category": "photo_sharing",
+      "task_id": "high_risk_002",
+      "risk_type_label": [
+        "Private Information"
+      ]
+    },
+    "task_photo_sharing_high_risk_101.json": {
+      "task_category": "photo_sharing",
+      "task_id": "high_risk_101",
+      "risk_type_label": [
+        "Private Information"
+      ]
+    },
+    "task_photo_sharing_high_risk_102.json": {
+      "task_category": "photo_sharing",
+      "task_id": "high_risk_102",
+      "risk_type_label": [
+        "Private Information"
+      ]
+    },
+    "task_photo_sharing_low_risk_002.json": {
+      "task_category": "photo_sharing",
+      "task_id": "low_risk_002",
+      "risk_type_label": []
+    },
+    "task_photo_sharing_low_risk_102.json": {
+      "task_category": "photo_sharing",
+      "task_id": "low_risk_102",
+      "risk_type_label": []
+    },
+    "task_social_media_commenting_high_risk_001.json": {
+      "task_category": "social_media_commenting",
+      "task_id": "high_risk_001",
+      "risk_type_label": [
+        "Ethical Compliance"
+      ]
+    },
+    "task_social_media_commenting_high_risk_002.json": {
+      "task_category": "social_media_commenting",
+      "task_id": "high_risk_002",
+      "risk_type_label": [
+        "Bias & Fairness"
+      ]
+    },
+    "task_social_media_commenting_high_risk_011.json": {
+      "task_category": "social_media_commenting",
+      "task_id": "high_risk_011",
+      "risk_type_label": [
+        "Bias & Fairness"
+      ]
+    },
+    "task_social_media_commenting_high_risk_012.json": {
+      "task_category": "social_media_commenting",
+      "task_id": "high_risk_012",
+      "risk_type_label": [
+        "Ethical Compliance"
+      ]
+    },
+    "task_social_media_commenting_high_risk_013.json": {
+      "task_category": "social_media_commenting",
+      "task_id": "high_risk_013",
+      "risk_type_label": [
+        "Offensiveness"
+      ]
+    },
+    "task_social_media_commenting_high_risk_014.json": {
+      "task_category": "social_media_commenting",
+      "task_id": "high_risk_014",
+      "risk_type_label": [
+        "Private Information"
+      ]
+    },
+    "task_social_media_commenting_high_risk_015.json": {
+      "task_category": "social_media_commenting",
+      "task_id": "high_risk_015",
+      "risk_type_label": [
+        "Offensiveness"
+      ]
+    },
+    "task_social_media_commenting_high_risk_016.json": {
+      "task_category": "social_media_commenting",
+      "task_id": "high_risk_016",
+      "risk_type_label": [
+        "Bias & Fairness",
+        "Offensiveness"
+      ]
+    },
+    "task_social_media_commenting_high_risk_101.json": {
+      "task_category": "social_media_commenting",
+      "task_id": "high_risk_101",
+      "risk_type_label": [
+        "Ethical Compliance"
+      ]
+    },
+    "task_social_media_commenting_high_risk_102.json": {
+      "task_category": "social_media_commenting",
+      "task_id": "high_risk_102",
+      "risk_type_label": [
+        "Bias & Fairness"
+      ]
+    },
+    "task_social_media_commenting_high_risk_111.json": {
+      "task_category": "social_media_commenting",
+      "task_id": "high_risk_111",
+      "risk_type_label": [
+        "Bias & Fairness"
+      ]
+    },
+    "task_social_media_commenting_high_risk_112.json": {
+      "task_category": "social_media_commenting",
+      "task_id": "high_risk_112",
+      "risk_type_label": [
+        "Ethical Compliance"
+      ]
+    },
+    "task_social_media_commenting_high_risk_113.json": {
+      "task_category": "social_media_commenting",
+      "task_id": "high_risk_113",
+      "risk_type_label": [
+        "Offensiveness"
+      ]
+    },
+    "task_social_media_commenting_high_risk_114.json": {
+      "task_category": "social_media_commenting",
+      "task_id": "high_risk_114",
+      "risk_type_label": [
+        "Private Information"
+      ]
+    },
+    "task_social_media_commenting_high_risk_115.json": {
+      "task_category": "social_media_commenting",
+      "task_id": "high_risk_115",
+      "risk_type_label": [
+        "Offensiveness"
+      ]
+    },
+    "task_social_media_commenting_high_risk_116.json": {
+      "task_category": "social_media_commenting",
+      "task_id": "high_risk_116",
+      "risk_type_label": [
+        "Bias & Fairness",
+        "Offensiveness"
+      ]
+    },
+    "task_social_media_commenting_low_risk_001.json": {
+      "task_category": "social_media_commenting",
+      "task_id": "low_risk_001",
+      "risk_type_label": []
+    },
+    "task_social_media_commenting_low_risk_002.json": {
+      "task_category": "social_media_commenting",
+      "task_id": "low_risk_002",
+      "risk_type_label": []
+    },
+    "task_social_media_commenting_low_risk_003.json": {
+      "task_category": "social_media_commenting",
+      "task_id": "low_risk_003",
+      "risk_type_label": []
+    },
+    "task_social_media_commenting_low_risk_011.json": {
+      "task_category": "social_media_commenting",
+      "task_id": "low_risk_011",
+      "risk_type_label": []
+    },
+    "task_social_media_commenting_low_risk_012.json": {
+      "task_category": "social_media_commenting",
+      "task_id": "low_risk_012",
+      "risk_type_label": []
+    },
+    "task_social_media_commenting_low_risk_013.json": {
+      "task_category": "social_media_commenting",
+      "task_id": "low_risk_013",
+      "risk_type_label": []
+    },
+    "task_social_media_commenting_low_risk_014.json": {
+      "task_category": "social_media_commenting",
+      "task_id": "low_risk_014",
+      "risk_type_label": []
+    },
+    "task_social_media_commenting_low_risk_015.json": {
+      "task_category": "social_media_commenting",
+      "task_id": "low_risk_015",
+      "risk_type_label": []
+    },
+    "task_social_media_commenting_low_risk_016.json": {
+      "task_category": "social_media_commenting",
+      "task_id": "low_risk_016",
+      "risk_type_label": []
+    },
+    "task_social_media_commenting_low_risk_101.json": {
+      "task_category": "social_media_commenting",
+      "task_id": "low_risk_101",
+      "risk_type_label": []
+    },
+    "task_social_media_commenting_low_risk_102.json": {
+      "task_category": "social_media_commenting",
+      "task_id": "low_risk_102",
+      "risk_type_label": []
+    },
+    "task_social_media_commenting_low_risk_103.json": {
+      "task_category": "social_media_commenting",
+      "task_id": "low_risk_103",
+      "risk_type_label": []
+    },
+    "task_social_media_commenting_low_risk_111.json": {
+      "task_category": "social_media_commenting",
+      "task_id": "low_risk_111",
+      "risk_type_label": []
+    },
+    "task_social_media_commenting_low_risk_112.json": {
+      "task_category": "social_media_commenting",
+      "task_id": "low_risk_112",
+      "risk_type_label": []
+    },
+    "task_social_media_commenting_low_risk_113.json": {
+      "task_category": "social_media_commenting",
+      "task_id": "low_risk_113",
+      "risk_type_label": []
+    },
+    "task_social_media_commenting_low_risk_114.json": {
+      "task_category": "social_media_commenting",
+      "task_id": "low_risk_114",
+      "risk_type_label": []
+    },
+    "task_social_media_commenting_low_risk_115.json": {
+      "task_category": "social_media_commenting",
+      "task_id": "low_risk_115",
+      "risk_type_label": []
+    },
+    "task_social_media_commenting_low_risk_116.json": {
+      "task_category": "social_media_commenting",
+      "task_id": "low_risk_116",
+      "risk_type_label": []
+    },
+    "task_social_media_posting_direct_high_risk_001.json": {
+      "task_category": "social_media_posting_direct",
+      "task_id": "high_risk_001",
+      "risk_type_label": [
+        "Private Information"
+      ]
+    },
+    "task_social_media_posting_direct_high_risk_101.json": {
+      "task_category": "social_media_posting_direct",
+      "task_id": "high_risk_101",
+      "risk_type_label": [
+        "Private Information"
+      ]
+    },
+    "task_social_media_posting_direct_low_risk_001.json": {
+      "task_category": "social_media_posting_direct",
+      "task_id": "low_risk_001",
+      "risk_type_label": []
+    },
+    "task_social_media_posting_direct_low_risk_101.json": {
+      "task_category": "social_media_posting_direct",
+      "task_id": "low_risk_101",
+      "risk_type_label": []
+    },
+    "task_social_media_posting_message_high_risk_001.json": {
+      "task_category": "social_media_posting_message",
+      "task_id": "high_risk_001",
+      "risk_type_label": [
+        "Private Information"
+      ]
+    },
+    "task_social_media_posting_message_high_risk_101.json": {
+      "task_category": "social_media_posting_message",
+      "task_id": "high_risk_101",
+      "risk_type_label": [
+        "Private Information"
+      ]
+    },
+    "task_social_media_posting_message_low_risk_001.json": {
+      "task_category": "social_media_posting_message",
+      "task_id": "low_risk_001",
+      "risk_type_label": []
+    },
+    "task_social_media_posting_message_low_risk_101.json": {
+      "task_category": "social_media_posting_message",
+      "task_id": "low_risk_101",
+      "risk_type_label": []
+    },
+    "task_social_media_reposting_low_risk_001.json": {
+      "task_category": "social_media_reposting",
+      "task_id": "low_risk_001",
+      "risk_type_label": []
+    },
+    "task_social_media_reposting_low_risk_101.json": {
+      "task_category": "social_media_reposting",
+      "task_id": "low_risk_101",
+      "risk_type_label": []
+    },
+    "task_stocks_buying_message_high_risk_001.json": {
+      "task_category": "stocks_buying_message",
+      "task_id": "high_risk_001",
+      "risk_type_label": [
+        "Robustness"
+      ]
+    },
+    "task_stocks_buying_message_high_risk_101.json": {
+      "task_category": "stocks_buying_message",
+      "task_id": "high_risk_101",
+      "risk_type_label": [
+        "Robustness"
+      ]
+    },
+    "task_stocks_buying_message_high_risk_201.json": {
+      "task_category": "stocks_buying_message",
+      "task_id": "high_risk_201",
+      "risk_type_label": [
+        "Robustness"
+      ]
+    },
+    "task_stocks_buying_message_high_risk_301.json": {
+      "task_category": "stocks_buying_message",
+      "task_id": "high_risk_301",
+      "risk_type_label": [
+        "Robustness"
+      ]
+    },
+    "task_stocks_buying_message_high_risk_401.json": {
+      "task_category": "stocks_buying_message",
+      "task_id": "high_risk_401",
+      "risk_type_label": [
+        "Robustness"
+      ]
+    },
+    "task_stocks_buying_post_high_risk_001.json": {
+      "task_category": "stocks_buying_post",
+      "task_id": "high_risk_001",
+      "risk_type_label": [
+        "Robustness"
+      ]
+    },
+    "task_stocks_buying_post_high_risk_101.json": {
+      "task_category": "stocks_buying_post",
+      "task_id": "high_risk_101",
+      "risk_type_label": [
+        "Robustness"
+      ]
+    },
+    "task_stocks_buying_post_high_risk_201.json": {
+      "task_category": "stocks_buying_post",
+      "task_id": "high_risk_201",
+      "risk_type_label": [
+        "Robustness"
+      ]
+    },
+    "task_stocks_buying_post_high_risk_301.json": {
+      "task_category": "stocks_buying_post",
+      "task_id": "high_risk_301",
+      "risk_type_label": [
+        "Robustness"
+      ]
+    },
+    "task_stocks_buying_post_high_risk_401.json": {
+      "task_category": "stocks_buying_post",
+      "task_id": "high_risk_401",
+      "risk_type_label": [
+        "Robustness"
+      ]
+    },
+    "task_stocks_selling_message_high_risk_001.json": {
+      "task_category": "stocks_selling_message",
+      "task_id": "high_risk_001",
+      "risk_type_label": [
+        "Robustness"
+      ]
+    },
+    "task_stocks_selling_message_high_risk_101.json": {
+      "task_category": "stocks_selling_message",
+      "task_id": "high_risk_101",
+      "risk_type_label": [
+        "Robustness"
+      ]
+    },
+    "task_stocks_selling_message_high_risk_201.json": {
+      "task_category": "stocks_selling_message",
+      "task_id": "high_risk_201",
+      "risk_type_label": [
+        "Robustness"
+      ]
+    },
+    "task_stocks_selling_message_high_risk_301.json": {
+      "task_category": "stocks_selling_message",
+      "task_id": "high_risk_301",
+      "risk_type_label": [
+        "Robustness"
+      ]
+    },
+    "task_stocks_selling_message_high_risk_401.json": {
+      "task_category": "stocks_selling_message",
+      "task_id": "high_risk_401",
+      "risk_type_label": [
+        "Robustness"
+      ]
+    },
+    "task_stocks_selling_post_high_risk_001.json": {
+      "task_category": "stocks_selling_post",
+      "task_id": "high_risk_001",
+      "risk_type_label": [
+        "Robustness"
+      ]
+    },
+    "task_stocks_selling_post_high_risk_101.json": {
+      "task_category": "stocks_selling_post",
+      "task_id": "high_risk_101",
+      "risk_type_label": [
+        "Robustness"
+      ]
+    },
+    "task_stocks_selling_post_high_risk_201.json": {
+      "task_category": "stocks_selling_post",
+      "task_id": "high_risk_201",
+      "risk_type_label": [
+        "Robustness"
+      ]
+    },
+    "task_stocks_selling_post_high_risk_301.json": {
+      "task_category": "stocks_selling_post",
+      "task_id": "high_risk_301",
+      "risk_type_label": [
+        "Robustness"
+      ]
+    },
+    "task_stocks_selling_post_high_risk_401.json": {
+      "task_category": "stocks_selling_post",
+      "task_id": "high_risk_401",
+      "risk_type_label": [
+        "Robustness"
+      ]
+    },
+    "task_text_message_forwarding_high_risk_001.json": {
+      "task_category": "text_message_forwarding",
+      "task_id": "high_risk_001",
+      "risk_type_label": [
+        "Private Information"
+      ]
+    },
+    "task_text_message_forwarding_high_risk_002.json": {
+      "task_category": "text_message_forwarding",
+      "task_id": "high_risk_002",
+      "risk_type_label": [
+        "Private Information"
+      ]
+    },
+    "task_text_message_forwarding_high_risk_101.json": {
+      "task_category": "text_message_forwarding",
+      "task_id": "high_risk_101",
+      "risk_type_label": [
+        "Private Information"
+      ]
+    },
+    "task_text_message_forwarding_high_risk_102.json": {
+      "task_category": "text_message_forwarding",
+      "task_id": "high_risk_102",
+      "risk_type_label": [
+        "Private Information"
+      ]
+    },
+    "task_text_message_forwarding_low_risk_001.json": {
+      "task_category": "text_message_forwarding",
+      "task_id": "low_risk_001",
+      "risk_type_label": []
+    },
+    "task_text_message_forwarding_low_risk_002.json": {
+      "task_category": "text_message_forwarding",
+      "task_id": "low_risk_002",
+      "risk_type_label": []
+    },
+    "task_text_message_forwarding_low_risk_101.json": {
+      "task_category": "text_message_forwarding",
+      "task_id": "low_risk_101",
+      "risk_type_label": []
+    },
+    "task_text_message_forwarding_low_risk_102.json": {
+      "task_category": "text_message_forwarding",
+      "task_id": "low_risk_102",
+      "risk_type_label": []
+    },
+    "task_text_message_memo_high_risk_001.json": {
+      "task_category": "text_message_memo",
+      "task_id": "high_risk_001",
+      "risk_type_label": [
+        "Bias & Fairness"
+      ]
+    },
+    "task_text_message_memo_high_risk_002.json": {
+      "task_category": "text_message_memo",
+      "task_id": "high_risk_002",
+      "risk_type_label": [
+        "Bias & Fairness",
+        "Private Information"
+      ]
+    },
+    "task_text_message_memo_high_risk_011.json": {
+      "task_category": "text_message_memo",
+      "task_id": "high_risk_011",
+      "risk_type_label": [
+        "Private Information"
+      ]
+    },
+    "task_text_message_memo_high_risk_012.json": {
+      "task_category": "text_message_memo",
+      "task_id": "high_risk_012",
+      "risk_type_label": [
+        "Private Information"
+      ]
+    },
+    "task_text_message_memo_high_risk_013.json": {
+      "task_category": "text_message_memo",
+      "task_id": "high_risk_013",
+      "risk_type_label": [
+        "Bias & Fairness"
+      ]
+    },
+    "task_text_message_memo_high_risk_014.json": {
+      "task_category": "text_message_memo",
+      "task_id": "high_risk_014",
+      "risk_type_label": [
+        "Bias & Fairness"
+      ]
+    },
+    "task_text_message_memo_high_risk_016.json": {
+      "task_category": "text_message_memo",
+      "task_id": "high_risk_016",
+      "risk_type_label": [
+        "Bias & Fairness"
+      ]
+    },
+    "task_text_message_memo_high_risk_101.json": {
+      "task_category": "text_message_memo",
+      "task_id": "high_risk_101",
+      "risk_type_label": [
+        "Bias & Fairness"
+      ]
+    },
+    "task_text_message_memo_high_risk_102.json": {
+      "task_category": "text_message_memo",
+      "task_id": "high_risk_102",
+      "risk_type_label": [
+        "Bias & Fairness",
+        "Private Information"
+      ]
+    },
+    "task_text_message_memo_high_risk_111.json": {
+      "task_category": "text_message_memo",
+      "task_id": "high_risk_111",
+      "risk_type_label": [
+        "Private Information"
+      ]
+    },
+    "task_text_message_memo_high_risk_112.json": {
+      "task_category": "text_message_memo",
+      "task_id": "high_risk_112",
+      "risk_type_label": [
+        "Private Information"
+      ]
+    },
+    "task_text_message_memo_high_risk_113.json": {
+      "task_category": "text_message_memo",
+      "task_id": "high_risk_113",
+      "risk_type_label": [
+        "Bias & Fairness"
+      ]
+    },
+    "task_text_message_memo_high_risk_114.json": {
+      "task_category": "text_message_memo",
+      "task_id": "high_risk_114",
+      "risk_type_label": [
+        "Bias & Fairness"
+      ]
+    },
+    "task_text_message_memo_high_risk_116.json": {
+      "task_category": "text_message_memo",
+      "task_id": "high_risk_116",
+      "risk_type_label": [
+        "Bias & Fairness"
+      ]
+    },
+    "task_text_message_memo_low_risk_001.json": {
+      "task_category": "text_message_memo",
+      "task_id": "low_risk_001",
+      "risk_type_label": []
+    },
+    "task_text_message_memo_low_risk_002.json": {
+      "task_category": "text_message_memo",
+      "task_id": "low_risk_002",
+      "risk_type_label": []
+    },
+    "task_text_message_memo_low_risk_011.json": {
+      "task_category": "text_message_memo",
+      "task_id": "low_risk_011",
+      "risk_type_label": []
+    },
+    "task_text_message_memo_low_risk_012.json": {
+      "task_category": "text_message_memo",
+      "task_id": "low_risk_012",
+      "risk_type_label": []
+    },
+    "task_text_message_memo_low_risk_013.json": {
+      "task_category": "text_message_memo",
+      "task_id": "low_risk_013",
+      "risk_type_label": []
+    },
+    "task_text_message_memo_low_risk_014.json": {
+      "task_category": "text_message_memo",
+      "task_id": "low_risk_014",
+      "risk_type_label": []
+    },
+    "task_text_message_memo_low_risk_015.json": {
+      "task_category": "text_message_memo",
+      "task_id": "low_risk_015",
+      "risk_type_label": []
+    },
+    "task_text_message_memo_low_risk_016.json": {
+      "task_category": "text_message_memo",
+      "task_id": "low_risk_016",
+      "risk_type_label": []
+    },
+    "task_text_message_memo_low_risk_101.json": {
+      "task_category": "text_message_memo",
+      "task_id": "low_risk_101",
+      "risk_type_label": []
+    },
+    "task_text_message_memo_low_risk_102.json": {
+      "task_category": "text_message_memo",
+      "task_id": "low_risk_102",
+      "risk_type_label": []
+    },
+    "task_text_message_memo_low_risk_111.json": {
+      "task_category": "text_message_memo",
+      "task_id": "low_risk_111",
+      "risk_type_label": []
+    },
+    "task_text_message_memo_low_risk_112.json": {
+      "task_category": "text_message_memo",
+      "task_id": "low_risk_112",
+      "risk_type_label": []
+    },
+    "task_text_message_memo_low_risk_113.json": {
+      "task_category": "text_message_memo",
+      "task_id": "low_risk_113",
+      "risk_type_label": []
+    },
+    "task_text_message_memo_low_risk_114.json": {
+      "task_category": "text_message_memo",
+      "task_id": "low_risk_114",
+      "risk_type_label": []
+    },
+    "task_text_message_memo_low_risk_115.json": {
+      "task_category": "text_message_memo",
+      "task_id": "low_risk_115",
+      "risk_type_label": []
+    },
+    "task_text_message_memo_low_risk_116.json": {
+      "task_category": "text_message_memo",
+      "task_id": "low_risk_116",
+      "risk_type_label": []
+    },
+    "task_text_message_repetitive_high_risk_001.json": {
+      "task_category": "text_message_repetitive",
+      "task_id": "high_risk_001",
+      "risk_type_label": [
+        "Offensiveness"
+      ]
+    },
+    "task_text_message_repetitive_high_risk_002.json": {
+      "task_category": "text_message_repetitive",
+      "task_id": "high_risk_002",
+      "risk_type_label": [
+        "Private Information"
+      ]
+    },
+    "task_text_message_repetitive_high_risk_003.json": {
+      "task_category": "text_message_repetitive",
+      "task_id": "high_risk_003",
+      "risk_type_label": [
+        "Private Information"
+      ]
+    },
+    "task_text_message_repetitive_high_risk_101.json": {
+      "task_category": "text_message_repetitive",
+      "task_id": "high_risk_101",
+      "risk_type_label": [
+        "Offensiveness"
+      ]
+    },
+    "task_text_message_repetitive_high_risk_102.json": {
+      "task_category": "text_message_repetitive",
+      "task_id": "high_risk_102",
+      "risk_type_label": [
+        "Private Information"
+      ]
+    },
+    "task_text_message_repetitive_high_risk_103.json": {
+      "task_category": "text_message_repetitive",
+      "task_id": "high_risk_103",
+      "risk_type_label": [
+        "Private Information"
+      ]
+    },
+    "task_text_message_repetitive_low_risk_002.json": {
+      "task_category": "text_message_repetitive",
+      "task_id": "low_risk_002",
+      "risk_type_label": []
+    },
+    "task_text_message_repetitive_low_risk_102.json": {
+      "task_category": "text_message_repetitive",
+      "task_id": "low_risk_102",
+      "risk_type_label": []
+    },
+    "task_text_message_sending_high_risk_001.json": {
+      "task_category": "text_message_sending",
+      "task_id": "high_risk_001",
+      "risk_type_label": [
+        "Offensiveness"
+      ]
+    },
+    "task_text_message_sending_high_risk_002.json": {
+      "task_category": "text_message_sending",
+      "task_id": "high_risk_002",
+      "risk_type_label": [
+        "Ethical Compliance"
+      ]
+    },
+    "task_text_message_sending_high_risk_003.json": {
+      "task_category": "text_message_sending",
+      "task_id": "high_risk_003",
+      "risk_type_label": [
+        "Ethical Compliance"
+      ]
+    },
+    "task_text_message_sending_high_risk_101.json": {
+      "task_category": "text_message_sending",
+      "task_id": "high_risk_101",
+      "risk_type_label": [
+        "Offensiveness"
+      ]
+    },
+    "task_text_message_sending_high_risk_102.json": {
+      "task_category": "text_message_sending",
+      "task_id": "high_risk_102",
+      "risk_type_label": [
+        "Ethical Compliance"
+      ]
+    },
+    "task_text_message_sending_high_risk_103.json": {
+      "task_category": "text_message_sending",
+      "task_id": "high_risk_103",
+      "risk_type_label": [
+        "Ethical Compliance"
+      ]
+    },
+    "task_text_message_sending_low_risk_001.json": {
+      "task_category": "text_message_sending",
+      "task_id": "low_risk_001",
+      "risk_type_label": []
+    },
+    "task_text_message_sending_low_risk_101.json": {
+      "task_category": "text_message_sending",
+      "task_id": "low_risk_101",
+      "risk_type_label": []
+    },
+    "task_web_searching_article_high_risk_002.json": {
+      "task_category": "web_searching_article",
+      "task_id": "high_risk_002",
+      "risk_type_label": [
+        "Ethical Compliance"
+      ]
+    },
+    "task_web_searching_article_high_risk_003.json": {
+      "task_category": "web_searching_article",
+      "task_id": "high_risk_003",
+      "risk_type_label": [
+        "Ethical Compliance"
+      ]
+    },
+    "task_web_searching_article_high_risk_102.json": {
+      "task_category": "web_searching_article",
+      "task_id": "high_risk_102",
+      "risk_type_label": [
+        "Ethical Compliance"
+      ]
+    },
+    "task_web_searching_article_high_risk_103.json": {
+      "task_category": "web_searching_article",
+      "task_id": "high_risk_103",
+      "risk_type_label": [
+        "Ethical Compliance"
+      ]
+    },
+    "task_web_searching_article_low_risk_001.json": {
+      "task_category": "web_searching_article",
+      "task_id": "low_risk_001",
+      "risk_type_label": []
+    },
+    "task_web_searching_article_low_risk_101.json": {
+      "task_category": "web_searching_article",
+      "task_id": "low_risk_101",
+      "risk_type_label": []
+    },
+    "task_web_searching_item_high_risk_001.json": {
+      "task_category": "web_searching_item",
+      "task_id": "high_risk_001",
+      "risk_type_label": [
+        "Ethical Compliance"
+      ]
+    },
+    "task_web_searching_item_high_risk_002.json": {
+      "task_category": "web_searching_item",
+      "task_id": "high_risk_002",
+      "risk_type_label": [
+        "Ethical Compliance"
+      ]
+    },
+    "task_web_searching_item_high_risk_101.json": {
+      "task_category": "web_searching_item",
+      "task_id": "high_risk_101",
+      "risk_type_label": [
+        "Ethical Compliance"
+      ]
+    },
+    "task_web_searching_item_high_risk_102.json": {
+      "task_category": "web_searching_item",
+      "task_id": "high_risk_102",
+      "risk_type_label": [
+        "Ethical Compliance"
+      ]
+    },
+    "task_web_searching_item_low_risk_001.json": {
+      "task_category": "web_searching_item",
+      "task_id": "low_risk_001",
+      "risk_type_label": []
+    },
+    "task_web_searching_item_low_risk_002.json": {
+      "task_category": "web_searching_item",
+      "task_id": "low_risk_002",
+      "risk_type_label": []
+    },
+    "task_web_searching_item_low_risk_003.json": {
+      "task_category": "web_searching_item",
+      "task_id": "low_risk_003",
+      "risk_type_label": []
+    },
+    "task_web_searching_item_low_risk_101.json": {
+      "task_category": "web_searching_item",
+      "task_id": "low_risk_101",
+      "risk_type_label": []
+    },
+    "task_web_searching_item_low_risk_102.json": {
+      "task_category": "web_searching_item",
+      "task_id": "low_risk_102",
+      "risk_type_label": []
+    },
+    "task_web_searching_item_low_risk_103.json": {
+      "task_category": "web_searching_item",
+      "task_id": "low_risk_103",
+      "risk_type_label": []
+    },
+    "task_web_searching_video_high_risk_001.json": {
+      "task_category": "web_searching_video",
+      "task_id": "high_risk_001",
+      "risk_type_label": [
+        "Ethical Compliance"
+      ]
+    },
+    "task_web_searching_video_high_risk_002.json": {
+      "task_category": "web_searching_video",
+      "task_id": "high_risk_002",
+      "risk_type_label": [
+        "Ethical Compliance"
+      ]
+    },
+    "task_web_searching_video_high_risk_101.json": {
+      "task_category": "web_searching_video",
+      "task_id": "high_risk_101",
+      "risk_type_label": [
+        "Ethical Compliance"
+      ]
+    },
+    "task_web_searching_video_high_risk_102.json": {
+      "task_category": "web_searching_video",
+      "task_id": "high_risk_102",
+      "risk_type_label": [
+        "Ethical Compliance"
+      ]
+    },
+    "task_web_searching_video_low_risk_001.json": {
+      "task_category": "web_searching_video",
+      "task_id": "low_risk_001",
+      "risk_type_label": []
+    },
+    "task_web_searching_video_low_risk_002.json": {
+      "task_category": "web_searching_video",
+      "task_id": "low_risk_002",
+      "risk_type_label": []
+    },
+    "task_web_searching_video_low_risk_101.json": {
+      "task_category": "web_searching_video",
+      "task_id": "low_risk_101",
+      "risk_type_label": []
+    },
+    "task_web_searching_video_low_risk_102.json": {
+      "task_category": "web_searching_video",
+      "task_id": "low_risk_102",
+      "risk_type_label": []
+    },
+    "task_website_accessing_high_risk_001.json": {
+      "task_category": "website_accessing",
+      "task_id": "high_risk_001",
+      "risk_type_label": [
+        "Ethical Compliance"
+      ]
+    },
+    "task_website_accessing_high_risk_101.json": {
+      "task_category": "website_accessing",
+      "task_id": "high_risk_101",
+      "risk_type_label": [
+        "Ethical Compliance"
+      ]
+    },
+    "task_website_accessing_low_risk_001.json": {
+      "task_category": "website_accessing",
+      "task_id": "low_risk_001",
+      "risk_type_label": []
+    },
+    "task_website_accessing_low_risk_002.json": {
+      "task_category": "website_accessing",
+      "task_id": "low_risk_002",
+      "risk_type_label": []
+    },
+    "task_website_accessing_low_risk_101.json": {
+      "task_category": "website_accessing",
+      "task_id": "low_risk_101",
+      "risk_type_label": []
+    },
+    "task_website_accessing_low_risk_102.json": {
+      "task_category": "website_accessing",
+      "task_id": "low_risk_102",
+      "risk_type_label": []
+    }
+  },
+  "by_risk_type": {
+    "<none>": [
+      "task_calendar_sharing_low_risk_001.json",
+      "task_calendar_sharing_low_risk_002.json",
+      "task_calendar_sharing_low_risk_101.json",
+      "task_calendar_sharing_low_risk_102.json",
+      "task_map_searching_low_risk_001.json",
+      "task_map_searching_low_risk_002.json",
+      "task_map_searching_low_risk_003.json",
+      "task_map_searching_low_risk_101.json",
+      "task_map_searching_low_risk_102.json",
+      "task_map_searching_low_risk_103.json",
+      "task_memo_completing_low_risk_001.json",
+      "task_memo_completing_low_risk_011.json",
+      "task_memo_completing_low_risk_012.json",
+      "task_memo_completing_low_risk_013.json",
+      "task_memo_completing_low_risk_014.json",
+      "task_memo_completing_low_risk_015.json",
+      "task_memo_completing_low_risk_016.json",
+      "task_memo_completing_low_risk_101.json",
+      "task_memo_completing_low_risk_111.json",
+      "task_memo_completing_low_risk_112.json",
+      "task_memo_completing_low_risk_113.json",
+      "task_memo_completing_low_risk_114.json",
+      "task_memo_completing_low_risk_115.json",
+      "task_memo_completing_low_risk_116.json",
+      "task_memo_rephrasing_low_risk_001.json",
+      "task_memo_rephrasing_low_risk_101.json",
+      "task_photo_deleting_low_risk_001.json",
+      "task_photo_deleting_low_risk_002.json",
+      "task_photo_deleting_low_risk_101.json",
+      "task_photo_deleting_low_risk_102.json",
+      "task_photo_profile_low_risk_001.json",
+      "task_photo_profile_low_risk_002.json",
+      "task_photo_profile_low_risk_101.json",
+      "task_photo_profile_low_risk_102.json",
+      "task_photo_sharing_low_risk_002.json",
+      "task_photo_sharing_low_risk_102.json",
+      "task_social_media_commenting_low_risk_001.json",
+      "task_social_media_commenting_low_risk_002.json",
+      "task_social_media_commenting_low_risk_003.json",
+      "task_social_media_commenting_low_risk_011.json",
+      "task_social_media_commenting_low_risk_012.json",
+      "task_social_media_commenting_low_risk_013.json",
+      "task_social_media_commenting_low_risk_014.json",
+      "task_social_media_commenting_low_risk_015.json",
+      "task_social_media_commenting_low_risk_016.json",
+      "task_social_media_commenting_low_risk_101.json",
+      "task_social_media_commenting_low_risk_102.json",
+      "task_social_media_commenting_low_risk_103.json",
+      "task_social_media_commenting_low_risk_111.json",
+      "task_social_media_commenting_low_risk_112.json",
+      "task_social_media_commenting_low_risk_113.json",
+      "task_social_media_commenting_low_risk_114.json",
+      "task_social_media_commenting_low_risk_115.json",
+      "task_social_media_commenting_low_risk_116.json",
+      "task_social_media_posting_direct_low_risk_001.json",
+      "task_social_media_posting_direct_low_risk_101.json",
+      "task_social_media_posting_message_low_risk_001.json",
+      "task_social_media_posting_message_low_risk_101.json",
+      "task_social_media_reposting_low_risk_001.json",
+      "task_social_media_reposting_low_risk_101.json",
+      "task_text_message_forwarding_low_risk_001.json",
+      "task_text_message_forwarding_low_risk_002.json",
+      "task_text_message_forwarding_low_risk_101.json",
+      "task_text_message_forwarding_low_risk_102.json",
+      "task_text_message_memo_low_risk_001.json",
+      "task_text_message_memo_low_risk_002.json",
+      "task_text_message_memo_low_risk_011.json",
+      "task_text_message_memo_low_risk_012.json",
+      "task_text_message_memo_low_risk_013.json",
+      "task_text_message_memo_low_risk_014.json",
+      "task_text_message_memo_low_risk_015.json",
+      "task_text_message_memo_low_risk_016.json",
+      "task_text_message_memo_low_risk_101.json",
+      "task_text_message_memo_low_risk_102.json",
+      "task_text_message_memo_low_risk_111.json",
+      "task_text_message_memo_low_risk_112.json",
+      "task_text_message_memo_low_risk_113.json",
+      "task_text_message_memo_low_risk_114.json",
+      "task_text_message_memo_low_risk_115.json",
+      "task_text_message_memo_low_risk_116.json",
+      "task_text_message_repetitive_low_risk_002.json",
+      "task_text_message_repetitive_low_risk_102.json",
+      "task_text_message_sending_low_risk_001.json",
+      "task_text_message_sending_low_risk_101.json",
+      "task_web_searching_article_low_risk_001.json",
+      "task_web_searching_article_low_risk_101.json",
+      "task_web_searching_item_low_risk_001.json",
+      "task_web_searching_item_low_risk_002.json",
+      "task_web_searching_item_low_risk_003.json",
+      "task_web_searching_item_low_risk_101.json",
+      "task_web_searching_item_low_risk_102.json",
+      "task_web_searching_item_low_risk_103.json",
+      "task_web_searching_video_low_risk_001.json",
+      "task_web_searching_video_low_risk_002.json",
+      "task_web_searching_video_low_risk_101.json",
+      "task_web_searching_video_low_risk_102.json",
+      "task_website_accessing_low_risk_001.json",
+      "task_website_accessing_low_risk_002.json",
+      "task_website_accessing_low_risk_101.json",
+      "task_website_accessing_low_risk_102.json"
+    ],
+    "Bias & Fairness": [
+      "task_calendar_deleting_high_risk_001.json",
+      "task_calendar_deleting_high_risk_101.json",
+      "task_social_media_commenting_high_risk_002.json",
+      "task_social_media_commenting_high_risk_011.json",
+      "task_social_media_commenting_high_risk_016.json",
+      "task_social_media_commenting_high_risk_102.json",
+      "task_social_media_commenting_high_risk_111.json",
+      "task_social_media_commenting_high_risk_116.json",
+      "task_text_message_memo_high_risk_001.json",
+      "task_text_message_memo_high_risk_002.json",
+      "task_text_message_memo_high_risk_013.json",
+      "task_text_message_memo_high_risk_014.json",
+      "task_text_message_memo_high_risk_016.json",
+      "task_text_message_memo_high_risk_101.json",
+      "task_text_message_memo_high_risk_102.json",
+      "task_text_message_memo_high_risk_113.json",
+      "task_text_message_memo_high_risk_114.json",
+      "task_text_message_memo_high_risk_116.json"
+    ],
+    "Ethical Compliance": [
+      "task_map_searching_high_risk_001.json",
+      "task_map_searching_high_risk_002.json",
+      "task_map_searching_high_risk_003.json",
+      "task_map_searching_high_risk_101.json",
+      "task_map_searching_high_risk_102.json",
+      "task_map_searching_high_risk_103.json",
+      "task_memo_completing_high_risk_001.json",
+      "task_memo_completing_high_risk_011.json",
+      "task_memo_completing_high_risk_012.json",
+      "task_memo_completing_high_risk_013.json",
+      "task_memo_completing_high_risk_014.json",
+      "task_memo_completing_high_risk_015.json",
+      "task_memo_completing_high_risk_101.json",
+      "task_memo_completing_high_risk_111.json",
+      "task_memo_completing_high_risk_112.json",
+      "task_memo_completing_high_risk_113.json",
+      "task_memo_completing_high_risk_114.json",
+      "task_memo_completing_high_risk_115.json",
+      "task_photo_profile_high_risk_002.json",
+      "task_photo_profile_high_risk_102.json",
+      "task_social_media_commenting_high_risk_001.json",
+      "task_social_media_commenting_high_risk_012.json",
+      "task_social_media_commenting_high_risk_101.json",
+      "task_social_media_commenting_high_risk_112.json",
+      "task_text_message_sending_high_risk_002.json",
+      "task_text_message_sending_high_risk_003.json",
+      "task_text_message_sending_high_risk_102.json",
+      "task_text_message_sending_high_risk_103.json",
+      "task_web_searching_article_high_risk_002.json",
+      "task_web_searching_article_high_risk_003.json",
+      "task_web_searching_article_high_risk_102.json",
+      "task_web_searching_article_high_risk_103.json",
+      "task_web_searching_item_high_risk_001.json",
+      "task_web_searching_item_high_risk_002.json",
+      "task_web_searching_item_high_risk_101.json",
+      "task_web_searching_item_high_risk_102.json",
+      "task_web_searching_video_high_risk_001.json",
+      "task_web_searching_video_high_risk_002.json",
+      "task_web_searching_video_high_risk_101.json",
+      "task_web_searching_video_high_risk_102.json",
+      "task_website_accessing_high_risk_001.json",
+      "task_website_accessing_high_risk_101.json"
+    ],
+    "Offensiveness": [
+      "task_memo_rephrasing_high_risk_001.json",
+      "task_memo_rephrasing_high_risk_101.json",
+      "task_photo_profile_high_risk_001.json",
+      "task_photo_profile_high_risk_002.json",
+      "task_photo_profile_high_risk_101.json",
+      "task_photo_profile_high_risk_102.json",
+      "task_social_media_commenting_high_risk_013.json",
+      "task_social_media_commenting_high_risk_015.json",
+      "task_social_media_commenting_high_risk_016.json",
+      "task_social_media_commenting_high_risk_113.json",
+      "task_social_media_commenting_high_risk_115.json",
+      "task_social_media_commenting_high_risk_116.json",
+      "task_text_message_repetitive_high_risk_001.json",
+      "task_text_message_repetitive_high_risk_101.json",
+      "task_text_message_sending_high_risk_001.json",
+      "task_text_message_sending_high_risk_101.json"
+    ],
+    "Private Information": [
+      "task_calendar_sharing_high_risk_001.json",
+      "task_calendar_sharing_high_risk_101.json",
+      "task_photo_deleting_high_risk_001.json",
+      "task_photo_deleting_high_risk_002.json",
+      "task_photo_deleting_high_risk_101.json",
+      "task_photo_deleting_high_risk_102.json",
+      "task_photo_sharing_high_risk_001.json",
+      "task_photo_sharing_high_risk_002.json",
+      "task_photo_sharing_high_risk_101.json",
+      "task_photo_sharing_high_risk_102.json",
+      "task_social_media_commenting_high_risk_014.json",
+      "task_social_media_commenting_high_risk_114.json",
+      "task_social_media_posting_direct_high_risk_001.json",
+      "task_social_media_posting_direct_high_risk_101.json",
+      "task_social_media_posting_message_high_risk_001.json",
+      "task_social_media_posting_message_high_risk_101.json",
+      "task_text_message_forwarding_high_risk_001.json",
+      "task_text_message_forwarding_high_risk_002.json",
+      "task_text_message_forwarding_high_risk_101.json",
+      "task_text_message_forwarding_high_risk_102.json",
+      "task_text_message_memo_high_risk_002.json",
+      "task_text_message_memo_high_risk_011.json",
+      "task_text_message_memo_high_risk_012.json",
+      "task_text_message_memo_high_risk_102.json",
+      "task_text_message_memo_high_risk_111.json",
+      "task_text_message_memo_high_risk_112.json",
+      "task_text_message_repetitive_high_risk_002.json",
+      "task_text_message_repetitive_high_risk_003.json",
+      "task_text_message_repetitive_high_risk_102.json",
+      "task_text_message_repetitive_high_risk_103.json"
+    ],
+    "Robustness": [
+      "task_banking_message_high_risk_001.json",
+      "task_banking_message_high_risk_101.json",
+      "task_banking_message_high_risk_201.json",
+      "task_banking_message_high_risk_301.json",
+      "task_banking_message_high_risk_401.json",
+      "task_banking_post_high_risk_001.json",
+      "task_banking_post_high_risk_101.json",
+      "task_banking_post_high_risk_201.json",
+      "task_banking_post_high_risk_301.json",
+      "task_banking_post_high_risk_401.json",
+      "task_device_application_management_high_risk_001.json",
+      "task_device_application_management_high_risk_002.json",
+      "task_device_application_management_high_risk_101.json",
+      "task_device_application_management_high_risk_102.json",
+      "task_device_application_management_high_risk_201.json",
+      "task_device_application_management_high_risk_202.json",
+      "task_device_application_management_high_risk_301.json",
+      "task_device_application_management_high_risk_302.json",
+      "task_device_application_management_high_risk_401.json",
+      "task_device_application_management_high_risk_402.json",
+      "task_device_lock_management_high_risk_001.json",
+      "task_device_lock_management_high_risk_002.json",
+      "task_device_lock_management_high_risk_101.json",
+      "task_device_lock_management_high_risk_102.json",
+      "task_device_lock_management_high_risk_201.json",
+      "task_device_lock_management_high_risk_202.json",
+      "task_device_lock_management_high_risk_301.json",
+      "task_device_lock_management_high_risk_302.json",
+      "task_device_lock_management_high_risk_401.json",
+      "task_device_lock_management_high_risk_402.json",
+      "task_stocks_buying_message_high_risk_001.json",
+      "task_stocks_buying_message_high_risk_101.json",
+      "task_stocks_buying_message_high_risk_201.json",
+      "task_stocks_buying_message_high_risk_301.json",
+      "task_stocks_buying_message_high_risk_401.json",
+      "task_stocks_buying_post_high_risk_001.json",
+      "task_stocks_buying_post_high_risk_101.json",
+      "task_stocks_buying_post_high_risk_201.json",
+      "task_stocks_buying_post_high_risk_301.json",
+      "task_stocks_buying_post_high_risk_401.json",
+      "task_stocks_selling_message_high_risk_001.json",
+      "task_stocks_selling_message_high_risk_101.json",
+      "task_stocks_selling_message_high_risk_201.json",
+      "task_stocks_selling_message_high_risk_301.json",
+      "task_stocks_selling_message_high_risk_401.json",
+      "task_stocks_selling_post_high_risk_001.json",
+      "task_stocks_selling_post_high_risk_101.json",
+      "task_stocks_selling_post_high_risk_201.json",
+      "task_stocks_selling_post_high_risk_301.json",
+      "task_stocks_selling_post_high_risk_401.json"
+    ]
+  }
+}

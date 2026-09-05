@@ -1,0 +1,50 @@
+{
+  "app": "VLC",
+  "tool_namespace": "vlc_preferences",
+  "terminology": "Android function tool",
+  "tools": [
+    {
+      "name": "get_vlc_preferences",
+      "description": "Parse the XML structure of the org.videolan.vlc_preferences.xml file and return documented user-facing settings structurally.",
+      "operation": "read",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "adb_path": {
+            "type": "string",
+            "default": "adb",
+            "description": "Path to the adb executable."
+          }
+        },
+        "required": []
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          },
+          "video_hud_timeout_in_s": {
+            "type": "integer",
+            "description": "Timeout for the video HUD in seconds."
+          },
+          "app_theme": {
+            "type": "string",
+            "description": "The configured application theme."
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "/data/data/org.videolan.vlc/shared_prefs/org.videolan.vlc_preferences.xml"
+      ],
+      "safety": {}
+    }
+  ]
+}

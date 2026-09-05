@@ -1,0 +1,28 @@
+# Local files and Python caches
+.DS_Store
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+.pytest_cache/
+
+# Publish developer documentation and minimal runnable tool bundles.
+/output_tool/*
+!/output_tool/developer_document/
+!/output_tool/implementation/
+!/output_tool/registration_isolation_test/
+!/output_tool/registration_lifecycle_test/
+!/output_tool/registration_unit_test/
+
+# Generation traces and intermediate repair bookkeeping stay local.
+/output_tool/**/raw_io/
+/output_tool/**/repair_prompt/
+/output_tool/**/manifest.json
+/output_tool/**/test_manifest.json
+/output_tool/**/repair.json
+/output_tool/**/repair_progress.json
+/output_tool/**/target.json
+/output_tool/**/verification.json

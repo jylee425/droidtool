@@ -1,0 +1,198 @@
+{
+  "app": "OsmAnd",
+  "tool_namespace": "map_markers_db",
+  "terminology": "Android function tool",
+  "tools": [
+    {
+      "name": "add_map_marker",
+      "description": "Inserts a new map marker into the OsmAnd map_markers database.",
+      "operation": "write",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "latitude": {
+            "type": "number",
+            "description": "Latitude in decimal degrees"
+          },
+          "longitude": {
+            "type": "number",
+            "description": "Longitude in decimal degrees"
+          },
+          "title": {
+            "type": "string",
+            "description": "Title of the marker"
+          },
+          "description": {
+            "type": "string",
+            "description": "Optional description of the marker"
+          },
+          "group_name": {
+            "type": "string",
+            "description": "Optional group name to categorize the marker"
+          },
+          "color": {
+            "type": "string",
+            "description": "Optional color code for the marker"
+          },
+          "adb_path": {
+            "type": "string",
+            "default": "adb",
+            "description": "Path to the adb executable"
+          }
+        },
+        "required": [
+          "latitude",
+          "longitude",
+          "title"
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          },
+          "marker_id": {
+            "type": "integer",
+            "description": "The generated primary key ID of the new marker"
+          }
+        },
+        "required": [
+          "success",
+          "error",
+          "marker_id"
+        ]
+      },
+      "state_surfaces": [
+        "/data/data/net.osmand/databases/map_markers_db"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "delete_map_marker",
+      "description": "Deletes a map marker from the OsmAnd map_markers database by its unique ID.",
+      "operation": "delete",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "marker_id": {
+            "type": "integer",
+            "description": "The unique ID of the marker to delete"
+          },
+          "adb_path": {
+            "type": "string",
+            "default": "adb",
+            "description": "Path to the adb executable"
+          }
+        },
+        "required": [
+          "marker_id"
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "/data/data/net.osmand/databases/map_markers_db"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "list_map_markers",
+      "description": "Queries and lists map markers from the OsmAnd map_markers database.",
+      "operation": "read",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "group_name": {
+            "type": "string",
+            "description": "Filter markers by a specific group name."
+          },
+          "active_only": {
+            "type": "boolean",
+            "description": "If true, return only active map markers."
+          },
+          "adb_path": {
+            "type": "string",
+            "default": "adb",
+            "description": "Path to the adb executable"
+          }
+        },
+        "required": []
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          },
+          "markers": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "marker_id": {
+                  "type": "integer"
+                },
+                "marker_lat": {
+                  "type": "number"
+                },
+                "marker_lon": {
+                  "type": "number"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "marker_description": {
+                  "type": "string"
+                },
+                "marker_active": {
+                  "type": "integer"
+                },
+                "group_name": {
+                  "type": "string"
+                },
+                "marker_color": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "marker_id",
+                "marker_lat",
+                "marker_lon",
+                "marker_active"
+              ]
+            }
+          }
+        },
+        "required": [
+          "success",
+          "error",
+          "markers"
+        ]
+      },
+      "state_surfaces": [
+        "/data/data/net.osmand/databases/map_markers_db"
+      ],
+      "safety": {}
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "app": "Retro Music",
+  "tool_namespace": "playback_state",
+  "terminology": "Android function tool",
+  "tools": [
+    {
+      "name": "get_playing_queue",
+      "description": "Retrieve the active playing queue from Retro Music's private database.",
+      "operation": "read",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          },
+          "queue": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "queue_position": {
+                  "type": "integer",
+                  "description": "The position of the song in the queue."
+                },
+                "song_id": {
+                  "type": "integer",
+                  "description": "Stable song ID if supported by the schema; may be null in title-only schemas."
+                },
+                "title": {
+                  "type": "string",
+                  "description": "Title of the song in the queue."
+                }
+              },
+              "required": [
+                "queue_position",
+                "title"
+              ]
+            }
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "/data/data/code.name.monkey.retromusic/databases/music_playback_state.db"
+      ],
+      "safety": {}
+    }
+  ]
+}

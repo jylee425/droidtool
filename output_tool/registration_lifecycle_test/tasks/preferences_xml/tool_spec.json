@@ -1,0 +1,92 @@
+{
+  "app": "Tasks",
+  "tool_namespace": "preferences_xml",
+  "terminology": "Android function tool",
+  "tools": [
+    {
+      "name": "get_preferences",
+      "description": "Retrieve user-facing app preferences from the Tasks SharedPreferences XML file.",
+      "operation": "read",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "keys": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Specific preference keys to retrieve. If empty, all preferences are returned."
+          }
+        },
+        "required": []
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "preferences": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Key-value pairs of the requested preferences."
+          },
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "preferences",
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "preferences_xml"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "set_preferences",
+      "description": "Set or update user-facing app preferences in the Tasks SharedPreferences XML file structurally, preserving other keys and maintaining file ownership.",
+      "operation": "write",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "preferences": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Key-value pairs of preferences to set or update."
+          }
+        },
+        "required": [
+          "preferences"
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "True if the preferences were successfully written."
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "preferences_xml"
+      ],
+      "safety": {}
+    }
+  ]
+}

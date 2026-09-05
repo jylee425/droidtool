@@ -1,0 +1,108 @@
+{
+  "app": "Retro Music",
+  "tool_namespace": "playback_state",
+  "terminology": "Android function tool",
+  "tools": [
+    {
+      "name": "get_playing_queue",
+      "description": "Retrieve the active playing queue from Retro Music's private database.",
+      "operation": "read",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          },
+          "queue": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "queue_position": {
+                  "type": "integer",
+                  "description": "The position of the song in the queue."
+                },
+                "song_id": {
+                  "type": "integer",
+                  "description": "Stable song ID if supported by the schema; may be null in title-only schemas."
+                },
+                "title": {
+                  "type": "string",
+                  "description": "Title of the song in the queue."
+                }
+              },
+              "required": [
+                "queue_position",
+                "title"
+              ]
+            }
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "/data/data/code.name.monkey.retromusic/databases/music_playback_state.db"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "set_playing_queue",
+      "description": "Set or append songs to the playing queue by resolving MediaStore song IDs and updating the private database.",
+      "operation": "write",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "song_ids": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            },
+            "description": "Ordered list of stable MediaStore song IDs to place in the queue."
+          },
+          "append": {
+            "type": "boolean",
+            "description": "If true, appends to the existing queue. If false, replaces the entire queue."
+          }
+        },
+        "required": [
+          "song_ids",
+          "append"
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          },
+          "queue_size": {
+            "type": "integer",
+            "description": "The total number of songs now in the queue."
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "/data/data/code.name.monkey.retromusic/databases/music_playback_state.db"
+      ],
+      "safety": {}
+    }
+  ]
+}

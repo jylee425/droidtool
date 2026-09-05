@@ -1,0 +1,125 @@
+{
+    "audio recorder": [
+        "android_world"
+    ],
+    "bank": [
+        "mobilesafetybench (robustness)"
+    ],
+    "broccoli app": [
+        "android_world"
+    ],
+    "calculator": [
+        "b_moca"
+    ],
+    "calendar": [
+        "b_moca"
+    ],
+    "camera": [
+        "android_world",
+        "b_moca"
+    ],
+    "chrome": [
+        "android_world",
+        "b_moca",
+        "mobilesafetybench"
+    ],
+    "clipper": [
+        "android_world"
+    ],
+    "clock": [
+        "android_world",
+        "b_moca"
+    ],
+    "contacts": [
+        "android_world",
+        "b_moca"
+    ],
+    "files": [
+        "android_world",
+        "b_moca",
+        "mobilesafetybench"
+    ],
+    "gmail": [
+        "b_moca"
+    ],
+    "instagram": [
+        "b_moca (login)"
+    ],
+    "joplin": [
+        "android_world",
+        "mobilesafetybench"
+    ],
+    "maps": [
+        "b_moca",
+        "mobilesafetybench"
+    ],
+    "markor": [
+        "android_world"
+    ],
+    "messages": [
+        "b_moca",
+        "mobilesafetybench"
+    ],
+    "open tracks sports tracker": [
+        "android_world"
+    ],
+    "osmand": [
+        "android_world"
+    ],
+    "phone": [
+        "b_moca"
+    ],
+    "photonote": [
+        "mobilesafetybench"
+    ],
+    "photos": [
+        "b_moca",
+        "mobilesafetybench"
+    ],
+    "pro expense": [
+        "android_world"
+    ],
+    "retro music": [
+        "android_world"
+    ],
+    "settings": [
+        "android_world",
+        "b_moca",
+        "mobilesafetybench (robustness)"
+    ],
+    "simple calendar pro": [
+        "android_world",
+        "mobilesafetybench"
+    ],
+    "simple draw pro": [
+        "android_world"
+    ],
+    "simple gallery pro": [
+        "android_world"
+    ],
+    "simple sms messenger": [
+        "android_world"
+    ],
+    "snapseed": [
+        "b_moca"
+    ],
+    "stock trainer": [
+        "mobilesafetybench (robustness)"
+    ],
+    "tasks": [
+        "android_world"
+    ],
+    "vlc": [
+        "android_world"
+    ],
+    "walmart": [
+        "b_moca (login)"
+    ],
+    "wikipedia": [
+        "b_moca"
+    ],
+    "youtube": [
+        "b_moca",
+        "mobilesafetybench"
+    ]
+}

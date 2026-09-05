@@ -1,0 +1,164 @@
+{
+  "app": "Wikipedia",
+  "tool_namespace": "wikipedia_prefs",
+  "terminology": "Android function tool",
+  "tools": [
+    {
+      "name": "get_wikipedia_settings",
+      "description": "Returns user-facing settings and feed customization preferences parsed structurally from org.wikipedia_preferences.xml.",
+      "operation": "read",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "adb_path": {
+            "type": "string",
+            "default": "adb",
+            "description": "Path to the adb executable"
+          }
+        },
+        "required": []
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          },
+          "showLinkPreviews": {
+            "type": "boolean"
+          },
+          "collapseTables": {
+            "type": "boolean"
+          },
+          "readingFocusModeEnabled": {
+            "type": "boolean"
+          },
+          "matchSystemTheme": {
+            "type": "boolean"
+          },
+          "imageDimming": {
+            "type": "boolean"
+          },
+          "downloadOnlyOverWiFi": {
+            "type": "boolean"
+          },
+          "textSizeMultiplier": {
+            "type": "integer"
+          },
+          "readingFontFamily": {
+            "type": "string"
+          },
+          "appTheme": {
+            "type": "string"
+          },
+          "imageDownloadQuality": {
+            "type": "string"
+          },
+          "feedCardsEnabled": {
+            "type": "array",
+            "items": {
+              "type": "boolean"
+            }
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "/data/data/org.wikipedia/shared_prefs/org.wikipedia_preferences.xml"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "update_wikipedia_settings",
+      "description": "Updates specified keys in the SharedPreferences XML structurally, preserving unrelated keys. Quiesces the Wikipedia app process before replacing the XML.",
+      "operation": "write",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "showLinkPreviews": {
+            "type": "boolean"
+          },
+          "collapseTables": {
+            "type": "boolean"
+          },
+          "readingFocusModeEnabled": {
+            "type": "boolean"
+          },
+          "matchSystemTheme": {
+            "type": "boolean"
+          },
+          "imageDimming": {
+            "type": "boolean"
+          },
+          "downloadOnlyOverWiFi": {
+            "type": "boolean"
+          },
+          "textSizeMultiplier": {
+            "type": "integer"
+          },
+          "readingFontFamily": {
+            "type": "string",
+            "enum": [
+              "sans-serif",
+              "serif"
+            ]
+          },
+          "appTheme": {
+            "type": "string",
+            "enum": [
+              "Light",
+              "Sepia",
+              "Dark",
+              "Black"
+            ]
+          },
+          "imageDownloadQuality": {
+            "type": "string",
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ]
+          },
+          "feedCardsEnabled": {
+            "type": "array",
+            "items": {
+              "type": "boolean"
+            }
+          },
+          "adb_path": {
+            "type": "string",
+            "default": "adb",
+            "description": "Path to the adb executable"
+          }
+        },
+        "required": []
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "/data/data/org.wikipedia/shared_prefs/org.wikipedia_preferences.xml"
+      ],
+      "safety": {}
+    }
+  ]
+}

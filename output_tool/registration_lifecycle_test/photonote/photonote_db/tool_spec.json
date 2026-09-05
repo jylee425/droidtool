@@ -1,0 +1,471 @@
+{
+  "app": "PhotoNote",
+  "tool_namespace": "photonote_db",
+  "terminology": "Android function tool",
+  "tools": [
+    {
+      "name": "create_comment",
+      "description": "Within a single transaction, inserts a new row into the 'comments' table and increments 'comments_count' in the 'posts' table for the corresponding post_id.",
+      "operation": "write",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "user_id": {
+            "type": "integer",
+            "description": "The stable ID of the user commenting."
+          },
+          "post_id": {
+            "type": "integer",
+            "description": "The stable ID of the post being commented on."
+          },
+          "text": {
+            "type": "string",
+            "description": "The text content of the comment."
+          },
+          "adb_path": {
+            "type": "string",
+            "default": "adb",
+            "description": "Path to the adb executable."
+          }
+        },
+        "required": [
+          "user_id",
+          "post_id",
+          "text"
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          },
+          "id": {
+            "type": "integer",
+            "description": "The stable ID of the newly created comment."
+          },
+          "user_id": {
+            "type": "integer",
+            "description": "The ID of the commenting user."
+          },
+          "post_id": {
+            "type": "integer",
+            "description": "The ID of the commented post."
+          },
+          "text": {
+            "type": "string",
+            "description": "The text content of the comment."
+          },
+          "created_at": {
+            "type": "string",
+            "description": "Timestamp of creation."
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "/data/data/com.chartreux.photonote/databases/PhotoNote.db"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "create_post",
+      "description": "Within a single transaction, inserts a new row into the 'posts' table and increments 'post_count' in the 'users' table for the corresponding user_id.",
+      "operation": "write",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "user_id": {
+            "type": "integer",
+            "description": "The stable ID of the user creating the post."
+          },
+          "text": {
+            "type": "string",
+            "description": "The text content of the post."
+          },
+          "adb_path": {
+            "type": "string",
+            "default": "adb",
+            "description": "Path to the adb executable."
+          }
+        },
+        "required": [
+          "user_id",
+          "text"
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          },
+          "id": {
+            "type": "integer",
+            "description": "The stable ID of the newly created post."
+          },
+          "user_id": {
+            "type": "integer",
+            "description": "The ID of the owning user."
+          },
+          "text": {
+            "type": "string",
+            "description": "The text content of the post."
+          },
+          "likes_count": {
+            "type": "integer",
+            "description": "Initialized likes count (0)."
+          },
+          "comments_count": {
+            "type": "integer",
+            "description": "Initialized comments count (0)."
+          },
+          "created_at": {
+            "type": "string",
+            "description": "Timestamp of creation."
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "/data/data/com.chartreux.photonote/databases/PhotoNote.db"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "create_user",
+      "description": "Inserts a new row into the 'users' table with the provided 'name' and 'user_name'. Sets 'post_count' to 0.",
+      "operation": "write",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The display name of the user."
+          },
+          "user_name": {
+            "type": "string",
+            "description": "The unique username handle for the user."
+          },
+          "adb_path": {
+            "type": "string",
+            "default": "adb",
+            "description": "Path to the adb executable."
+          }
+        },
+        "required": [
+          "name",
+          "user_name"
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          },
+          "id": {
+            "type": "integer",
+            "description": "The auto-generated stable ID of the newly created user."
+          },
+          "name": {
+            "type": "string",
+            "description": "The display name of the user."
+          },
+          "user_name": {
+            "type": "string",
+            "description": "The unique username handle."
+          },
+          "post_count": {
+            "type": "integer",
+            "description": "Initialized post count, defaults to 0."
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "/data/data/com.chartreux.photonote/databases/PhotoNote.db"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "get_posts",
+      "description": "Returns a list of posts matching the optional 'user_id' filter, or all posts if no filter is provided.",
+      "operation": "read",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "user_id": {
+            "type": "integer",
+            "description": "Optional user ID filter to retrieve posts from a specific user."
+          },
+          "adb_path": {
+            "type": "string",
+            "default": "adb",
+            "description": "Path to the adb executable."
+          }
+        },
+        "required": []
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          },
+          "posts": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer"
+                },
+                "user_id": {
+                  "type": "integer"
+                },
+                "text": {
+                  "type": "string"
+                },
+                "likes_count": {
+                  "type": "integer"
+                },
+                "comments_count": {
+                  "type": "integer"
+                },
+                "created_at": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "id",
+                "user_id",
+                "text",
+                "likes_count",
+                "comments_count",
+                "created_at"
+              ]
+            }
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "/data/data/com.chartreux.photonote/databases/PhotoNote.db"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "get_users",
+      "description": "Returns a list of users matching the optional 'user_name' filter, or all users if no filter is provided.",
+      "operation": "read",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "user_name": {
+            "type": "string",
+            "description": "Optional username filter to find a specific user."
+          },
+          "adb_path": {
+            "type": "string",
+            "default": "adb",
+            "description": "Path to the adb executable."
+          }
+        },
+        "required": []
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          },
+          "users": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "user_name": {
+                  "type": "string"
+                },
+                "post_count": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "id",
+                "name",
+                "user_name",
+                "post_count"
+              ]
+            }
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "/data/data/com.chartreux.photonote/databases/PhotoNote.db"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "toggle_follow_user",
+      "description": "Within a transaction: If 'follow' is true, inserts a row into the 'follows' table (if not already present). If 'follow' is false, deletes the corresponding row from the 'follows' table.",
+      "operation": "write",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "follower_id": {
+            "type": "integer",
+            "description": "The stable ID of the user who wants to follow/unfollow."
+          },
+          "followed_id": {
+            "type": "integer",
+            "description": "The stable ID of the user being followed/unfollowed."
+          },
+          "follow": {
+            "type": "boolean",
+            "description": "True to follow, False to unfollow."
+          },
+          "adb_path": {
+            "type": "string",
+            "default": "adb",
+            "description": "Path to the adb executable."
+          }
+        },
+        "required": [
+          "follower_id",
+          "followed_id",
+          "follow"
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          },
+          "follower_id": {
+            "type": "integer"
+          },
+          "followed_id": {
+            "type": "integer"
+          },
+          "following": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "/data/data/com.chartreux.photonote/databases/PhotoNote.db"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "toggle_like_post",
+      "description": "Within a single transaction: If 'like' is true and no row exists in 'likes' for this user/post, inserts the row and increments 'likes_count' in 'posts'. If 'like' is false and a row exists, deletes the row and decrements 'likes_count' in 'posts'.",
+      "operation": "write",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "user_id": {
+            "type": "integer",
+            "description": "The stable ID of the user performing the action."
+          },
+          "post_id": {
+            "type": "integer",
+            "description": "The stable ID of the post to like or unlike."
+          },
+          "like": {
+            "type": "boolean",
+            "description": "True to like the post, False to unlike it."
+          },
+          "adb_path": {
+            "type": "string",
+            "default": "adb",
+            "description": "Path to the adb executable."
+          }
+        },
+        "required": [
+          "user_id",
+          "post_id",
+          "like"
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          },
+          "user_id": {
+            "type": "integer"
+          },
+          "post_id": {
+            "type": "integer"
+          },
+          "liked": {
+            "type": "boolean"
+          },
+          "likes_count": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "/data/data/com.chartreux.photonote/databases/PhotoNote.db"
+      ],
+      "safety": {}
+    }
+  ]
+}

@@ -1,0 +1,284 @@
+{
+  "app": "VLC",
+  "tool_namespace": "vlc_media_db",
+  "terminology": "Android function tool",
+  "tools": [
+    {
+      "name": "create_vlc_playlist",
+      "description": "Create a new VLC playlist with the specified name.",
+      "operation": "write",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of the new playlist."
+          },
+          "adb_path": {
+            "type": "string",
+            "default": "adb",
+            "description": "Path to the adb executable."
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          },
+          "id_playlist": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "vlc_media_db"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "delete_vlc_playlist",
+      "description": "Delete a VLC playlist and its associated media relations.",
+      "operation": "delete",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "id_playlist": {
+            "type": "integer",
+            "description": "The ID of the playlist to delete."
+          },
+          "adb_path": {
+            "type": "string",
+            "default": "adb",
+            "description": "Path to the adb executable."
+          }
+        },
+        "required": [
+          "id_playlist"
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "vlc_media_db"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "get_vlc_playlist_items",
+      "description": "Retrieve the ordered list of media items within a VLC playlist.",
+      "operation": "read",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "id_playlist": {
+            "type": "integer",
+            "description": "The ID of the playlist."
+          },
+          "adb_path": {
+            "type": "string",
+            "default": "adb",
+            "description": "Path to the adb executable."
+          }
+        },
+        "required": [
+          "id_playlist"
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          },
+          "id_playlist": {
+            "type": "integer"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id_media": {
+                  "type": "integer"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "mrl": {
+                  "type": "string"
+                },
+                "position": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "id_media",
+                "title",
+                "mrl",
+                "position"
+              ]
+            }
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "vlc_media_db"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "list_vlc_media",
+      "description": "List all media items registered in the VLC media library.",
+      "operation": "read",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "adb_path": {
+            "type": "string",
+            "default": "adb",
+            "description": "Path to the adb executable."
+          }
+        },
+        "required": []
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          },
+          "media_items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id_media": {
+                  "type": "integer"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "filename": {
+                  "type": "string"
+                },
+                "mrl": {
+                  "type": "string"
+                },
+                "duration": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "id_media",
+                "title",
+                "mrl"
+              ]
+            }
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "vlc_media_db"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "list_vlc_playlists",
+      "description": "List all playlists stored in the VLC media database.",
+      "operation": "read",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "adb_path": {
+            "type": "string",
+            "default": "adb",
+            "description": "Path to the adb executable."
+          }
+        },
+        "required": []
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          },
+          "playlists": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id_playlist": {
+                  "type": "integer"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "creation_date": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "id_playlist",
+                "name"
+              ]
+            }
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "vlc_media_db"
+      ],
+      "safety": {}
+    }
+  ]
+}

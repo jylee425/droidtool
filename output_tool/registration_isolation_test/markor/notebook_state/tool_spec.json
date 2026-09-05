@@ -1,0 +1,192 @@
+{
+  "app": "Markor",
+  "tool_namespace": "notebook_state",
+  "terminology": "Android function tool",
+  "tools": [
+    {
+      "name": "resolve_notebook_root",
+      "description": "Read and parse app.xml and net.gsantner.markor_preferences.xml to extract pref_key__notebook_directory or exts_notebook_directory, normalizing equivalent external-storage aliases to one canonical path.",
+      "operation": "read",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          },
+          "notebook_root": {
+            "type": "string"
+          },
+          "source": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error",
+          "notebook_root",
+          "source"
+        ]
+      },
+      "state_surfaces": [
+        "notebook_preferences",
+        "notebook_preferences_alt"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "list_notebook_directory",
+      "description": "Perform a non-recursive directory listing of the resolved absolute path under the notebook root.",
+      "operation": "read",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "relative_path": {
+            "type": "string",
+            "description": "The relative path of the directory to list, starting from the notebook root. Use empty string for the root itself."
+          }
+        },
+        "required": [
+          "relative_path"
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "relative_path": {
+                  "type": "string"
+                },
+                "is_directory": {
+                  "type": "boolean"
+                },
+                "size": {
+                  "type": "integer"
+                },
+                "last_modified": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "name",
+                "relative_path",
+                "is_directory",
+                "last_modified"
+              ]
+            }
+          }
+        },
+        "required": [
+          "success",
+          "error",
+          "items"
+        ]
+      },
+      "state_surfaces": [
+        "notebook_files"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "write_note_file",
+      "description": "Atomically create or replace a note file under the resolved canonical root, creating missing parent directories.",
+      "operation": "write",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "relative_path": {
+            "type": "string",
+            "description": "The relative path of the note file from the notebook root."
+          },
+          "content": {
+            "type": "string",
+            "description": "The exact UTF-8 text content to write."
+          }
+        },
+        "required": [
+          "relative_path",
+          "content"
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          },
+          "absolute_path": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error",
+          "absolute_path"
+        ]
+      },
+      "state_surfaces": [
+        "notebook_files"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "create_notebook_folder",
+      "description": "Create a folder under the resolved canonical root. Requires the immediate parent directory to exist.",
+      "operation": "write",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "relative_path": {
+            "type": "string",
+            "description": "The relative path of the folder to create (e.g., 'Work/Projects/NewProject')."
+          }
+        },
+        "required": [
+          "relative_path"
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "notebook_files"
+      ],
+      "safety": {}
+    }
+  ]
+}

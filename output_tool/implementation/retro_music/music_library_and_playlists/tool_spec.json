@@ -1,0 +1,318 @@
+{
+  "app": "Retro Music",
+  "tool_namespace": "music_library_and_playlists",
+  "terminology": "Android function tool",
+  "tools": [
+    {
+      "name": "list_library_songs",
+      "description": "List songs from the MediaStore library, optionally filtered by title.",
+      "operation": "read",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "title_filter": {
+            "type": "string",
+            "description": "Optional substring filter to search songs by title."
+          },
+          "adb_path": {
+            "type": "string",
+            "default": "adb",
+            "description": "Path to the adb executable."
+          }
+        },
+        "required": []
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          },
+          "songs": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "song_id": {
+                  "type": "integer"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "artist": {
+                  "type": "string"
+                },
+                "album": {
+                  "type": "string"
+                },
+                "duration_ms": {
+                  "type": "integer"
+                },
+                "data_path": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "song_id",
+                "title"
+              ]
+            }
+          }
+        },
+        "required": [
+          "success",
+          "error",
+          "songs"
+        ]
+      },
+      "state_surfaces": [
+        "content://media/external/audio/media"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "get_playlists",
+      "description": "Retrieve a unified list of playlists from both the private database and MediaStore.",
+      "operation": "read",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "adb_path": {
+            "type": "string",
+            "default": "adb",
+            "description": "Path to the adb executable."
+          }
+        },
+        "required": []
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          },
+          "playlists": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "playlist_id": {
+                  "type": "integer"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "source": {
+                  "type": "string",
+                  "enum": [
+                    "private_db",
+                    "mediastore",
+                    "both"
+                  ]
+                }
+              },
+              "required": [
+                "playlist_id",
+                "name",
+                "source"
+              ]
+            }
+          }
+        },
+        "required": [
+          "success",
+          "error",
+          "playlists"
+        ]
+      },
+      "state_surfaces": [
+        "/data/data/code.name.monkey.retromusic/databases/playlist.db",
+        "content://media/external/audio/playlists"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "get_playlist_members",
+      "description": "Get the ordered list of songs belonging to a specified playlist.",
+      "operation": "read",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "playlist_id": {
+            "type": "integer",
+            "description": "The stable ID of the playlist."
+          },
+          "adb_path": {
+            "type": "string",
+            "default": "adb",
+            "description": "Path to the adb executable."
+          }
+        },
+        "required": [
+          "playlist_id"
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          },
+          "playlist_id": {
+            "type": "integer"
+          },
+          "playlist_name": {
+            "type": "string"
+          },
+          "songs": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "song_id": {
+                  "type": "integer"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "play_order": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "song_id",
+                "title",
+                "play_order"
+              ]
+            }
+          }
+        },
+        "required": [
+          "success",
+          "error",
+          "playlist_id",
+          "playlist_name",
+          "songs"
+        ]
+      },
+      "state_surfaces": [
+        "/data/data/code.name.monkey.retromusic/databases/playlist.db",
+        "content://media/external/audio/playlists"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "save_playlist",
+      "description": "Create or update a playlist with an ordered list of song IDs, mirroring changes to both the private database and MediaStore.",
+      "operation": "write",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "playlist_name": {
+            "type": "string",
+            "description": "The name of the playlist to create or update."
+          },
+          "song_ids": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            },
+            "description": "Ordered list of stable MediaStore song IDs."
+          },
+          "adb_path": {
+            "type": "string",
+            "default": "adb",
+            "description": "Path to the adb executable."
+          }
+        },
+        "required": [
+          "playlist_name",
+          "song_ids"
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          },
+          "playlist_id": {
+            "type": "integer"
+          },
+          "playlist_name": {
+            "type": "string"
+          },
+          "songs_added_count": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "success",
+          "error",
+          "playlist_id",
+          "playlist_name",
+          "songs_added_count"
+        ]
+      },
+      "state_surfaces": [
+        "/data/data/code.name.monkey.retromusic/databases/playlist.db",
+        "content://media/external/audio/playlists"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "delete_playlist",
+      "description": "Delete a playlist by ID from both the private database and MediaStore.",
+      "operation": "delete",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "playlist_id": {
+            "type": "integer",
+            "description": "The stable ID of the playlist to delete."
+          },
+          "adb_path": {
+            "type": "string",
+            "default": "adb",
+            "description": "Path to the adb executable."
+          }
+        },
+        "required": [
+          "playlist_id"
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "/data/data/code.name.monkey.retromusic/databases/playlist.db",
+        "content://media/external/audio/playlists"
+      ],
+      "safety": {}
+    }
+  ]
+}

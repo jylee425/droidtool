@@ -1,0 +1,269 @@
+{
+  "app": "Clock",
+  "tool_namespace": "alarms_db",
+  "terminology": "Android function tool",
+  "tools": [
+    {
+      "name": "create_alarm",
+      "description": "Inserts a new alarm template into the Clock database, dynamically inspecting the schema to populate only supported columns.",
+      "operation": "write",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "hour": {
+            "type": "integer",
+            "description": "Hour of the alarm (0-23)"
+          },
+          "minutes": {
+            "type": "integer",
+            "description": "Minute of the alarm (0-59)"
+          },
+          "daysofweek": {
+            "type": "integer",
+            "description": "Repeat-days bitmask. Monday=1, Tuesday=2, Wednesday=4, Thursday=8, Friday=16, Saturday=32, Sunday=64. Default is 0 (one-time)."
+          },
+          "enabled": {
+            "type": "boolean",
+            "description": "Whether the alarm is enabled upon creation. Defaults to true."
+          },
+          "label": {
+            "type": "string",
+            "description": "Optional label for the alarm."
+          },
+          "vibrate": {
+            "type": "boolean",
+            "description": "Whether the alarm should vibrate."
+          },
+          "delete_after_use": {
+            "type": "boolean",
+            "description": "Whether the alarm is deleted after triggering once."
+          },
+          "adb_path": {
+            "type": "string",
+            "description": "Path to the adb executable."
+          }
+        },
+        "required": [
+          "hour",
+          "minutes"
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The auto-generated unique identifier of the newly created alarm template."
+          },
+          "success": {
+            "type": "boolean",
+            "description": "Indicates if the alarm was successfully created."
+          },
+          "error": {
+            "type": "string",
+            "description": "Error message if the operation failed."
+          }
+        },
+        "required": [
+          "id",
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "/data/user_de/0/com.google.android.deskclock/databases/alarms.db",
+        "/data/user_de/0/com.android.deskclock/databases/alarms.db"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "delete_alarm",
+      "description": "Deletes an alarm template by its unique ID, and removes any associated alarm instances to maintain relationship consistency.",
+      "operation": "delete",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The unique durable alarm identifier (_id) to delete."
+          },
+          "adb_path": {
+            "type": "string",
+            "description": "Path to the adb executable."
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "Indicates if the deletion was successful."
+          },
+          "error": {
+            "type": "string",
+            "description": "Error message if the operation failed."
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "/data/user_de/0/com.google.android.deskclock/databases/alarms.db",
+        "/data/user_de/0/com.android.deskclock/databases/alarms.db"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "list_alarms",
+      "description": "Lists all configured alarm templates from the active Clock package database.",
+      "operation": "read",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "adb_path": {
+            "type": "string",
+            "description": "Path to the adb executable."
+          }
+        },
+        "required": []
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "alarms": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer"
+                },
+                "hour": {
+                  "type": "integer"
+                },
+                "minutes": {
+                  "type": "integer"
+                },
+                "daysofweek": {
+                  "type": "integer"
+                },
+                "enabled": {
+                  "type": "boolean"
+                },
+                "label": {
+                  "type": "string"
+                },
+                "vibrate": {
+                  "type": "boolean"
+                },
+                "delete_after_use": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "id",
+                "hour",
+                "minutes",
+                "daysofweek",
+                "enabled"
+              ]
+            }
+          },
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "alarms",
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "/data/user_de/0/com.google.android.deskclock/databases/alarms.db",
+        "/data/user_de/0/com.android.deskclock/databases/alarms.db"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "update_alarm",
+      "description": "Updates specified fields of an existing alarm template matching the unique ID.",
+      "operation": "write",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The unique durable alarm identifier (_id) to update."
+          },
+          "hour": {
+            "type": "integer",
+            "description": "New hour of the alarm (0-23)"
+          },
+          "minutes": {
+            "type": "integer",
+            "description": "New minute of the alarm (0-59)"
+          },
+          "daysofweek": {
+            "type": "integer",
+            "description": "New repeat-days bitmask."
+          },
+          "enabled": {
+            "type": "boolean",
+            "description": "Enable or disable the alarm."
+          },
+          "label": {
+            "type": "string",
+            "description": "New label for the alarm."
+          },
+          "vibrate": {
+            "type": "boolean",
+            "description": "Update vibration setting."
+          },
+          "delete_after_use": {
+            "type": "boolean",
+            "description": "Update delete-after-use setting."
+          },
+          "adb_path": {
+            "type": "string",
+            "description": "Path to the adb executable."
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "Indicates if the update was successful."
+          },
+          "error": {
+            "type": "string",
+            "description": "Error message if the operation failed."
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "/data/user_de/0/com.google.android.deskclock/databases/alarms.db",
+        "/data/user_de/0/com.android.deskclock/databases/alarms.db"
+      ],
+      "safety": {}
+    }
+  ]
+}

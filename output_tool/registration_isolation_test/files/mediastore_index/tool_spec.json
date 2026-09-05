@@ -1,0 +1,60 @@
+{
+  "app": "Files",
+  "tool_namespace": "mediastore_index",
+  "terminology": "Android function tool",
+  "tools": [
+    {
+      "name": "get_media_metadata",
+      "description": "Query the Android MediaStore ContentProvider to retrieve auxiliary metadata for a media file specified by its absolute filesystem path.",
+      "operation": "read",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "file_path": {
+            "type": "string",
+            "description": "The absolute filesystem path of the media file."
+          }
+        },
+        "required": [
+          "file_path"
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          },
+          "indexed": {
+            "type": "boolean",
+            "description": "True if the file is indexed in MediaStore."
+          },
+          "mime_type": {
+            "type": "string",
+            "description": "The MIME/media type of the file, if indexed."
+          },
+          "media_uri": {
+            "type": "string",
+            "description": "The content URI of the media entry, if indexed."
+          },
+          "size": {
+            "type": "integer",
+            "description": "The file size recorded in MediaStore."
+          }
+        },
+        "required": [
+          "success",
+          "error",
+          "indexed"
+        ]
+      },
+      "state_surfaces": [
+        "content://media"
+      ],
+      "safety": {}
+    }
+  ]
+}

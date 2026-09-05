@@ -1,0 +1,347 @@
+{
+  "app": "Files",
+  "tool_namespace": "external_storage_files",
+  "terminology": "Android function tool",
+  "tools": [
+    {
+      "name": "create_directory",
+      "description": "Creates a new folder directory at the specified path, including any necessary parent directories. If the folder already exists, returns success=true without mutating content. Fails if a regular file already exists at the target path.",
+      "operation": "write",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "directory_path": {
+            "type": "string",
+            "description": "The absolute path of the folder to create, e.g., '/sdcard/Download/NewFolder'."
+          },
+          "adb_path": {
+            "type": "string",
+            "default": "adb",
+            "description": "Path to the adb executable."
+          }
+        },
+        "required": [
+          "directory_path"
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "True if the folder was successfully created or already exists."
+          },
+          "path": {
+            "type": "string",
+            "description": "The absolute path of the created folder."
+          },
+          "error": {
+            "type": "string",
+            "description": "Error message if the operation failed."
+          }
+        },
+        "required": [
+          "success",
+          "path",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "external_storage_files"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "delete_path",
+      "description": "Deletes the file or directory at the specified path. If recursive is true, traverses and deletes all child files and folders first. If recursive is false, fails if the target is a non-empty directory. Notifies MediaStore of the deletion.",
+      "operation": "delete",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "description": "The absolute path of the file or folder to delete."
+          },
+          "recursive": {
+            "type": "boolean",
+            "description": "Must be true to delete a non-empty folder. If false, folder deletion will fail if it contains items."
+          },
+          "adb_path": {
+            "type": "string",
+            "default": "adb",
+            "description": "Path to the adb executable."
+          }
+        },
+        "required": [
+          "path",
+          "recursive"
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "True if the path was successfully deleted."
+          },
+          "error": {
+            "type": "string",
+            "description": "Error message if the operation failed."
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "external_storage_files"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "list_directory",
+      "description": "List of direct child files and folders containing name, path, is_directory, size, and modified_time. Returns empty list or structured error if directory does not exist or is inaccessible.",
+      "operation": "read",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "directory_path": {
+            "type": "string",
+            "description": "The absolute path of the directory to list, e.g., '/sdcard/Download' or '/sdcard/Documents'."
+          },
+          "adb_path": {
+            "type": "string",
+            "default": "adb",
+            "description": "Path to the adb executable."
+          }
+        },
+        "required": [
+          "directory_path"
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "path": {
+                  "type": "string"
+                },
+                "is_directory": {
+                  "type": "boolean"
+                },
+                "size": {
+                  "type": "integer"
+                },
+                "modified_time": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "name",
+                "path",
+                "is_directory",
+                "size",
+                "modified_time"
+              ]
+            }
+          },
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "items",
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "external_storage_files"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "move_or_rename_path",
+      "description": "Performs atomic rename/move of the file or folder to the destination path. If overwrite is true, replaces an existing file at the destination. If overwrite is false, fails if destination exists. Updates MediaStore index.",
+      "operation": "write",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "source_path": {
+            "type": "string",
+            "description": "The absolute path of the file or folder to move/rename."
+          },
+          "destination_path": {
+            "type": "string",
+            "description": "The absolute destination path."
+          },
+          "overwrite": {
+            "type": "boolean",
+            "description": "If true, overwrites an existing file at the destination. If false, fails if the destination exists."
+          },
+          "adb_path": {
+            "type": "string",
+            "default": "adb",
+            "description": "Path to the adb executable."
+          }
+        },
+        "required": [
+          "source_path",
+          "destination_path",
+          "overwrite"
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "True if the move or rename operation succeeded."
+          },
+          "destination_path": {
+            "type": "string",
+            "description": "The final path of the moved/renamed item."
+          },
+          "error": {
+            "type": "string",
+            "description": "Error message if the operation failed."
+          }
+        },
+        "required": [
+          "success",
+          "destination_path",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "external_storage_files"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "read_file_text",
+      "description": "Returns the text content of the file decoded as UTF-8 and the file size in bytes.",
+      "operation": "read",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "file_path": {
+            "type": "string",
+            "description": "The absolute path of the file to read."
+          },
+          "adb_path": {
+            "type": "string",
+            "default": "adb",
+            "description": "Path to the adb executable."
+          }
+        },
+        "required": [
+          "file_path"
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "string",
+            "description": "The text content of the file."
+          },
+          "size": {
+            "type": "integer",
+            "description": "The size of the file in bytes."
+          },
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "content",
+          "size",
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "external_storage_files"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "write_file_text",
+      "description": "Writes string bytes using UTF-8 encoding to the target file path. Creates the file if it does not exist. Overwrites if specified. Triggers MediaStore scan.",
+      "operation": "write",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "file_path": {
+            "type": "string",
+            "description": "The absolute path of the file to write, e.g., '/sdcard/Download/notes.txt'."
+          },
+          "content": {
+            "type": "string",
+            "description": "The text content to write into the file."
+          },
+          "overwrite": {
+            "type": "boolean",
+            "description": "If true, overwrites the file if it already exists. If false, fails if the file exists."
+          },
+          "adb_path": {
+            "type": "string",
+            "default": "adb",
+            "description": "Path to the adb executable."
+          }
+        },
+        "required": [
+          "file_path",
+          "content",
+          "overwrite"
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "True if the file was successfully written."
+          },
+          "path": {
+            "type": "string",
+            "description": "The absolute path of the written file."
+          },
+          "size": {
+            "type": "integer",
+            "description": "The size of the written file in bytes."
+          },
+          "error": {
+            "type": "string",
+            "description": "Error message if the operation failed."
+          }
+        },
+        "required": [
+          "success",
+          "path",
+          "size",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "external_storage_files"
+      ],
+      "safety": {}
+    }
+  ]
+}

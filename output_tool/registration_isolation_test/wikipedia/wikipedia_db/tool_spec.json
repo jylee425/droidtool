@@ -1,0 +1,254 @@
+{
+  "app": "Wikipedia",
+  "tool_namespace": "wikipedia_db",
+  "terminology": "Android function tool",
+  "tools": [
+    {
+      "name": "clear_history_and_searches",
+      "description": "Clears recent search history and/or visited page history from the database.",
+      "operation": "read_write",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "clear_searches": {
+            "type": "boolean",
+            "description": "Whether to clear recent search history"
+          },
+          "clear_history": {
+            "type": "boolean",
+            "description": "Whether to clear visited page history"
+          },
+          "adb_path": {
+            "type": "string",
+            "default": "adb",
+            "description": "Path to the adb executable"
+          }
+        },
+        "required": [
+          "clear_searches",
+          "clear_history"
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "/data/data/org.wikipedia/databases/wikipedia.db"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "create_reading_list",
+      "description": "Creates a new reading list in the Wikipedia database.",
+      "operation": "read_write",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "listTitle": {
+            "type": "string",
+            "description": "The title of the new reading list"
+          },
+          "description": {
+            "type": "string",
+            "description": "Optional description of the reading list"
+          },
+          "adb_path": {
+            "type": "string",
+            "default": "adb",
+            "description": "Path to the adb executable"
+          }
+        },
+        "required": [
+          "listTitle"
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "id": {
+            "type": "integer"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "id",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "/data/data/org.wikipedia/databases/wikipedia.db"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "get_history_and_searches",
+      "description": "Retrieves recent search queries and visited page history entries.",
+      "operation": "read",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "limit": {
+            "type": "integer",
+            "description": "Maximum number of history and search entries to return"
+          },
+          "adb_path": {
+            "type": "string",
+            "default": "adb",
+            "description": "Path to the adb executable"
+          }
+        },
+        "required": []
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "recent_searches": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "type": "string"
+                },
+                "timestamp": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "text",
+                "timestamp"
+              ]
+            }
+          },
+          "history_entries": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "lang": {
+                  "type": "string"
+                },
+                "timestamp": {
+                  "type": "integer"
+                },
+                "timeSpentSec": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "title",
+                "timestamp"
+              ]
+            }
+          },
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "recent_searches",
+          "history_entries",
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "/data/data/org.wikipedia/databases/wikipedia.db"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "list_reading_lists",
+      "description": "Lists all user-created reading lists with their metadata.",
+      "operation": "read",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "adb_path": {
+            "type": "string",
+            "default": "adb",
+            "description": "Path to the adb executable"
+          }
+        },
+        "required": []
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "reading_lists": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer"
+                },
+                "listTitle": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "mtime": {
+                  "type": "integer"
+                },
+                "atime": {
+                  "type": "integer"
+                },
+                "sizeBytes": {
+                  "type": "integer"
+                },
+                "remoteId": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "id",
+                "listTitle"
+              ]
+            }
+          },
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "reading_lists",
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "/data/data/org.wikipedia/databases/wikipedia.db"
+      ],
+      "safety": {}
+    }
+  ]
+}

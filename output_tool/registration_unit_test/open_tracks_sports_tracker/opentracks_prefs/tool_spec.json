@@ -1,0 +1,50 @@
+{
+  "app": "OpenTracks Sports Tracker",
+  "tool_namespace": "opentracks_prefs",
+  "terminology": "Android function tool",
+  "tools": [
+    {
+      "name": "get_settings",
+      "description": "Read statsUnits and statsCustomLayoutFieldsKey keys from preferences XML.",
+      "operation": "read",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "adb_path": {
+            "type": "string",
+            "default": "adb",
+            "description": "Path to the adb executable"
+          }
+        },
+        "required": []
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          },
+          "statsUnits": {
+            "type": "string",
+            "description": "The unit system used (e.g., METRIC, IMPERIAL)"
+          },
+          "statsCustomLayoutFieldsKey": {
+            "type": "string",
+            "description": "Custom statistics layout configuration string if initialized"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "shared_preferences"
+      ],
+      "safety": {}
+    }
+  ]
+}

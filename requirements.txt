@@ -1,0 +1,31 @@
+# Python >= 3.12.
+# Evaluation/setup dependencies copied from android_agent_rl_develop and trimmed
+# to the MobileSafetyBench, B-MoCA, and AndroidWorld evaluation scripts.
+
+# Core runtime
+numpy
+Pillow
+pandas>=2.2
+pyyaml
+tqdm
+
+# LLM / VLM API clients
+google-genai
+anthropic
+openai
+
+# Android / benchmark automation
+appium-python-client
+android-env
+
+# Local/offline VLM evaluation helpers
+--extra-index-url https://download.pytorch.org/whl/cu128
+torch==2.8.0+cu128
+torchvision==0.23.0+cu128
+transformers==4.57.6
+accelerate>=0.34
+qwen-vl-utils
+einops
+
+# Analysis utilities used by rollout summaries/tests
+matplotlib>=3.8

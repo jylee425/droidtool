@@ -1,0 +1,115 @@
+{
+  "app": "Simple Calendar Pro",
+  "tool_namespace": "shared_prefs",
+  "terminology": "Android function tool",
+  "tools": [
+    {
+      "name": "get_calendar_settings",
+      "description": "Reads and parses the XML file structurally. Returns modeled settings (view, display_event_types, internal_storage_path) along with all raw key-value pairs in all_settings. Returns an empty settings object if the file does not exist or is unreadable.",
+      "operation": "read",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "adb_path": {
+            "type": "string",
+            "default": "adb",
+            "description": "Path to the adb executable."
+          }
+        },
+        "required": []
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          },
+          "view": {
+            "type": "integer",
+            "description": "The active calendar view setting (e.g., daily, weekly, monthly representation value)."
+          },
+          "display_event_types": {
+            "type": "string",
+            "description": "Comma-separated list or encoded string of event type IDs to display."
+          },
+          "internal_storage_path": {
+            "type": "string",
+            "description": "Configured internal storage path for exports/backups."
+          },
+          "all_settings": {
+            "type": "object",
+            "description": "Raw key-value pairs parsed from Prefs.xml for unmodeled settings."
+          }
+        },
+        "required": [
+          "success",
+          "error",
+          "all_settings"
+        ]
+      },
+      "state_surfaces": [
+        "/data/data/com.simplemobiletools.calendar.pro/shared_prefs/Prefs.xml"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "set_calendar_setting",
+      "description": "Modifies or inserts the specified key-value pair matching the designated value_type tag. Preserves all other unknown keys and maintains correct file permissions. Stops the app process before writing to avoid conflicts with cached values.",
+      "operation": "write",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "description": "The preference key to update (e.g., 'view', 'display_event_types', 'internal_storage_path')."
+          },
+          "value": {
+            "type": "string",
+            "description": "The value to set, serialized as a string."
+          },
+          "value_type": {
+            "type": "string",
+            "enum": [
+              "string",
+              "int",
+              "boolean"
+            ],
+            "description": "The data type of the preference value."
+          },
+          "adb_path": {
+            "type": "string",
+            "default": "adb",
+            "description": "Path to the adb executable."
+          }
+        },
+        "required": [
+          "key",
+          "value",
+          "value_type"
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "/data/data/com.simplemobiletools.calendar.pro/shared_prefs/Prefs.xml"
+      ],
+      "safety": {}
+    }
+  ]
+}

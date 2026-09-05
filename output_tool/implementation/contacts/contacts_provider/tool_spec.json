@@ -1,0 +1,179 @@
+{
+  "app": "Contacts",
+  "tool_namespace": "contacts_provider",
+  "terminology": "Android function tool",
+  "tools": [
+    {
+      "name": "create_contact",
+      "description": "Creates a new contact by inserting a raw contact and its associated structured name and phone data rows.",
+      "operation": "write",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "given_name": {
+            "type": "string",
+            "description": "The given (first) name of the contact."
+          },
+          "family_name": {
+            "type": "string",
+            "description": "The family (last) name of the contact."
+          },
+          "phone_number": {
+            "type": "string",
+            "description": "The phone number to associate with the contact."
+          },
+          "phone_type": {
+            "type": "integer",
+            "description": "The phone type integer (e.g., 2 for Mobile, 1 for Home, 3 for Work)."
+          },
+          "adb_path": {
+            "type": "string",
+            "description": "Path to the adb executable.",
+            "default": "adb"
+          }
+        },
+        "required": [
+          "given_name",
+          "phone_number"
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          },
+          "raw_contact_id": {
+            "type": "string",
+            "description": "The newly created raw contact ID."
+          },
+          "display_name": {
+            "type": "string",
+            "description": "The constructed display name of the created contact."
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "content://com.android.contacts/raw_contacts",
+        "content://com.android.contacts/data"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "delete_contact",
+      "description": "Deletes a contact using its exact raw contact ID.",
+      "operation": "delete",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "raw_contact_id": {
+            "type": "string",
+            "description": "The exact raw contact ID to delete."
+          },
+          "adb_path": {
+            "type": "string",
+            "description": "Path to the adb executable.",
+            "default": "adb"
+          }
+        },
+        "required": [
+          "raw_contact_id"
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "content://com.android.contacts/raw_contacts"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "list_contacts",
+      "description": "Lists contacts, optionally filtering by display name or phone number.",
+      "operation": "read",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Optional search query to filter contacts by display name or phone number."
+          },
+          "adb_path": {
+            "type": "string",
+            "description": "Path to the adb executable.",
+            "default": "adb"
+          }
+        },
+        "required": []
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          },
+          "contacts": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "contact_id": {
+                  "type": "string"
+                },
+                "raw_contact_id": {
+                  "type": "string"
+                },
+                "display_name": {
+                  "type": "string"
+                },
+                "phone_number": {
+                  "type": "string"
+                },
+                "phone_type": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "contact_id",
+                "display_name"
+              ]
+            }
+          }
+        },
+        "required": [
+          "success",
+          "error",
+          "contacts"
+        ]
+      },
+      "state_surfaces": [
+        "content://contacts/phones/",
+        "content://com.android.contacts/data"
+      ],
+      "safety": {}
+    }
+  ]
+}

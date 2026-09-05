@@ -1,0 +1,97 @@
+{
+  "app": "Clock",
+  "tool_namespace": "clock_preferences",
+  "terminology": "Android function tool",
+  "tools": [
+    {
+      "name": "get_clock_preferences",
+      "description": "Reads all keys from the resolved SharedPreferences XML file, returning display_clock_seconds, home_time_zone, and other discovered build-dependent keys.",
+      "operation": "read",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "Indicates if the operation was successful."
+          },
+          "error": {
+            "type": "string",
+            "description": "Error message if the operation failed."
+          },
+          "display_clock_seconds": {
+            "type": "boolean",
+            "description": "Whether to display seconds on the clock face."
+          },
+          "home_time_zone": {
+            "type": "string",
+            "description": "The home time zone identifier if initialized."
+          },
+          "other_preferences": {
+            "type": "object",
+            "description": "Other discovered build-dependent clock style, alarm, timer, week-start, and screen-saver keys."
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "shared_preferences"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "set_clock_preference",
+      "description": "Writes the specified key-value pair into the SharedPreferences XML, preserving unknown keys and structural XML integrity.",
+      "operation": "write",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "enum": [
+              "display_clock_seconds",
+              "home_time_zone"
+            ],
+            "description": "The preference key to update."
+          },
+          "value": {
+            "type": "string",
+            "description": "The value to set. For boolean keys like 'display_clock_seconds', use 'true' or 'false'."
+          }
+        },
+        "required": [
+          "key",
+          "value"
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "Indicates if the preference was successfully updated."
+          },
+          "error": {
+            "type": "string",
+            "description": "Error message if the operation failed."
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "shared_preferences"
+      ],
+      "safety": {}
+    }
+  ]
+}

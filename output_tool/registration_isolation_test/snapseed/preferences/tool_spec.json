@@ -1,0 +1,119 @@
+{
+  "app": "Snapseed",
+  "tool_namespace": "preferences",
+  "terminology": "Android function tool",
+  "tools": [
+    {
+      "name": "get_snapseed_settings",
+      "description": "Inspects Snapseed's preference files and returns the current settings for dark theme, export long-edge limit, and export compression quality.",
+      "operation": "read",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "adb_path": {
+            "type": "string",
+            "description": "Path to the adb executable.",
+            "default": "adb"
+          }
+        },
+        "required": []
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          },
+          "pref_appearance_use_dark_theme": {
+            "type": "boolean",
+            "description": "Whether dark theme is enabled."
+          },
+          "pref_export_setting_long_edge": {
+            "type": "string",
+            "description": "Export sizing limit for the long edge (e.g., '0' for original/no resize, or numeric string limit)."
+          },
+          "pref_export_setting_compression": {
+            "type": "string",
+            "description": "Export compression/quality numeric string (commonly '95' or '100')."
+          },
+          "active_preferences_file": {
+            "type": "string",
+            "description": "The path of the preference file that was read."
+          }
+        },
+        "required": [
+          "success",
+          "error",
+          "pref_appearance_use_dark_theme",
+          "pref_export_setting_long_edge",
+          "pref_export_setting_compression",
+          "active_preferences_file"
+        ]
+      },
+      "state_surfaces": [
+        "/data/data/com.niksoftware.snapseed/shared_prefs/Preferences.xml",
+        "/data/data/com.niksoftware.snapseed/shared_prefs/com.niksoftware.snapseed_preferences.xml"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "set_snapseed_settings",
+      "description": "Updates Snapseed's settings for dark theme, export long-edge limit, and/or export compression quality, ensuring process quiescence and XML type preservation.",
+      "operation": "write",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "pref_appearance_use_dark_theme": {
+            "type": "boolean",
+            "description": "Enable or disable dark theme."
+          },
+          "pref_export_setting_long_edge": {
+            "type": "string",
+            "description": "Long-edge numeric string limit. Use '0' for original/no resize."
+          },
+          "pref_export_setting_compression": {
+            "type": "string",
+            "description": "Compression/quality numeric string (e.g., '95' or '100')."
+          },
+          "adb_path": {
+            "type": "string",
+            "description": "Path to the adb executable.",
+            "default": "adb"
+          }
+        },
+        "required": []
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          },
+          "updated_keys": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of keys that were modified."
+          }
+        },
+        "required": [
+          "success",
+          "error",
+          "updated_keys"
+        ]
+      },
+      "state_surfaces": [
+        "/data/data/com.niksoftware.snapseed/shared_prefs/Preferences.xml",
+        "/data/data/com.niksoftware.snapseed/shared_prefs/com.niksoftware.snapseed_preferences.xml"
+      ],
+      "safety": {}
+    }
+  ]
+}

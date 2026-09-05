@@ -1,0 +1,105 @@
+{
+  "app": "Retro Music",
+  "tool_namespace": "preferences",
+  "terminology": "Android function tool",
+  "tools": [
+    {
+      "name": "get_preferences",
+      "description": "Parsed key-value pairs from the preferences XML, mapping toggle_volume, toggle_add_controls, and last_used_tab.",
+      "operation": "read",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "adb_path": {
+            "type": "string",
+            "default": "adb",
+            "description": "Path to the adb executable."
+          }
+        },
+        "required": []
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          },
+          "toggle_volume": {
+            "type": "boolean",
+            "description": "Whether the volume toggle is enabled."
+          },
+          "toggle_add_controls": {
+            "type": "boolean",
+            "description": "Whether add controls are enabled."
+          },
+          "last_used_tab": {
+            "type": "string",
+            "description": "The last active tab in the UI."
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "preferences_xml"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "set_preference",
+      "description": "Parse the XML, update or insert the target key with the correct type tag (e.g., <boolean> or <string>), and preserve all other unknown keys.",
+      "operation": "write",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "enum": [
+              "toggle_volume",
+              "toggle_add_controls",
+              "last_used_tab"
+            ],
+            "description": "The preference key to update."
+          },
+          "value": {
+            "type": "string",
+            "description": "The value to set (serialized as string; booleans should be 'true' or 'false')."
+          },
+          "adb_path": {
+            "type": "string",
+            "default": "adb",
+            "description": "Path to the adb executable."
+          }
+        },
+        "required": [
+          "key",
+          "value"
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "preferences_xml"
+      ],
+      "safety": {}
+    }
+  ]
+}

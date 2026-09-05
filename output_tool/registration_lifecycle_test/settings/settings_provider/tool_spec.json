@@ -1,0 +1,530 @@
+{
+  "app": "Settings",
+  "tool_namespace": "settings_provider",
+  "terminology": "Android function tool",
+  "tools": [
+    {
+      "name": "clear_app_cache",
+      "description": "Clears the temporary cache files for the specified package using the package manager service.",
+      "operation": "delete",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "package_name": {
+            "type": "string",
+            "description": "The fully qualified Android package name (e.g., 'com.android.chrome')."
+          }
+        },
+        "required": [
+          "package_name"
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "app_management_service"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "get_audio_streams",
+      "description": "Returns a list of supported audio streams with their names, IDs, and current volume levels.",
+      "operation": "read",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "streams": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "stream_name": {
+                  "type": "string",
+                  "enum": [
+                    "alarm",
+                    "media",
+                    "ring",
+                    "call",
+                    "notification"
+                  ]
+                },
+                "stream_id": {
+                  "type": "integer"
+                },
+                "level": {
+                  "type": "integer",
+                  "description": "Current volume level index."
+                }
+              },
+              "required": [
+                "stream_name",
+                "stream_id",
+                "level"
+              ]
+            }
+          },
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "streams",
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "audio_service",
+        "settings_provider"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "get_brightness",
+      "description": "Returns the brightness percentage, raw value, and auto-brightness mode.",
+      "operation": "read",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "brightness_percent": {
+            "type": "integer",
+            "description": "Brightness level mapped to a 0..100 percentage."
+          },
+          "raw_value": {
+            "type": "integer",
+            "description": "The raw brightness value (0..255)."
+          },
+          "auto_brightness": {
+            "type": "boolean",
+            "description": "True if automatic/adaptive brightness is enabled."
+          },
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "brightness_percent",
+          "raw_value",
+          "auto_brightness",
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "settings_provider"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "get_setting_entry",
+      "description": "Returns the namespace, key, and raw string value. If the key is absent or returns literal 'null', it is mapped to a JSON null.",
+      "operation": "read",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "namespace": {
+            "type": "string",
+            "enum": [
+              "system",
+              "secure",
+              "global"
+            ],
+            "description": "The settings namespace to query."
+          },
+          "key": {
+            "type": "string",
+            "description": "The setting key name (e.g., 'accelerometer_rotation')."
+          }
+        },
+        "required": [
+          "namespace",
+          "key"
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "namespace": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          },
+          "value": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The raw setting value, or null if the key is absent."
+          },
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "namespace",
+          "key",
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "settings_provider"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "get_theme_state",
+      "description": "Returns whether dark mode/night mode is active as a boolean.",
+      "operation": "read",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "dark_mode_enabled": {
+            "type": "boolean",
+            "description": "True if dark theme/night mode is active."
+          },
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "dark_mode_enabled",
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "theme_service",
+        "settings_provider"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "get_wifi_state",
+      "description": "Returns the active Wi-Fi enabled state as a boolean.",
+      "operation": "read",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "description": "True if Wi-Fi is enabled, false otherwise."
+          },
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "enabled",
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "wifi_service",
+        "settings_provider"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "put_setting_entry",
+      "description": "Directly updates the specified key in the given namespace with the provided raw string value.",
+      "operation": "write",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "namespace": {
+            "type": "string",
+            "enum": [
+              "system",
+              "secure",
+              "global"
+            ],
+            "description": "The settings namespace to modify."
+          },
+          "key": {
+            "type": "string",
+            "description": "The setting key name."
+          },
+          "value": {
+            "type": "string",
+            "description": "The value to write."
+          }
+        },
+        "required": [
+          "namespace",
+          "key",
+          "value"
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "settings_provider"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "set_airplane_mode_enabled",
+      "description": "Writes '1' or '0' to global.airplane_mode_on and broadcasts the android.intent.action.AIRPLANE_MODE intent.",
+      "operation": "write",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "description": "Set to true to enable Airplane Mode, false to disable."
+          }
+        },
+        "required": [
+          "enabled"
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "airplane_mode_service"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "set_audio_stream_volume",
+      "description": "Sets the volume level for a specific audio stream via the media volume service.",
+      "operation": "write",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "stream_name": {
+            "type": "string",
+            "enum": [
+              "alarm",
+              "media",
+              "ring",
+              "call",
+              "notification"
+            ],
+            "description": "The target audio stream."
+          },
+          "level": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "The volume index level to set."
+          }
+        },
+        "required": [
+          "stream_name",
+          "level"
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "audio_service"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "set_brightness",
+      "description": "Maps brightness_percent to raw 0..255, writes it to system.screen_brightness, and writes 1 (auto) or 0 (manual) to system.screen_brightness_mode.",
+      "operation": "write",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "brightness_percent": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 100,
+            "description": "Target brightness percentage (0..100)."
+          },
+          "auto_brightness": {
+            "type": "boolean",
+            "description": "Set to true to enable adaptive brightness, or false for manual brightness."
+          }
+        },
+        "required": [
+          "brightness_percent",
+          "auto_brightness"
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "settings_provider"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "set_theme_mode",
+      "description": "Sets the system UI theme to dark or light mode via the uimode service.",
+      "operation": "write",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "dark_mode": {
+            "type": "boolean",
+            "description": "True to enable dark mode, false for light mode."
+          }
+        },
+        "required": [
+          "dark_mode"
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "theme_service"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "set_wifi_enabled",
+      "description": "Enables or disables Wi-Fi via the system service command, which asynchronously updates the global.wifi_on mirror key.",
+      "operation": "write",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "description": "Set to true to enable Wi-Fi, false to disable."
+          }
+        },
+        "required": [
+          "enabled"
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "wifi_service"
+      ],
+      "safety": {}
+    }
+  ]
+}

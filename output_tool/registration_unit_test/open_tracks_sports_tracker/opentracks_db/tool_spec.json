@@ -1,0 +1,345 @@
+{
+  "app": "OpenTracks Sports Tracker",
+  "tool_namespace": "opentracks_db",
+  "terminology": "Android function tool",
+  "tools": [
+    {
+      "name": "create_track",
+      "description": "Insert a new track into the tracks table and return its stable ID.",
+      "operation": "write",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the track"
+          },
+          "description": {
+            "type": "string",
+            "description": "Optional description of the track"
+          },
+          "category": {
+            "type": "string",
+            "description": "Optional category of the track"
+          },
+          "activity_type": {
+            "type": "string",
+            "description": "Optional activity type"
+          },
+          "adb_path": {
+            "type": "string",
+            "default": "adb",
+            "description": "Path to the adb executable"
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          },
+          "track_id": {
+            "type": "integer",
+            "description": "The stable ID of the newly created track"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "opentracks_db"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "delete_track",
+      "description": "Delete a track and atomically delete its dependent trackpoints and markers.",
+      "operation": "delete",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "track_id": {
+            "type": "integer",
+            "description": "The stable ID of the track to delete"
+          },
+          "adb_path": {
+            "type": "string",
+            "default": "adb",
+            "description": "Path to the adb executable"
+          }
+        },
+        "required": [
+          "track_id"
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "opentracks_db"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "get_track_details",
+      "description": "Retrieve detailed track information including ordered trackpoints and markers.",
+      "operation": "read",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "track_id": {
+            "type": "integer",
+            "description": "The stable ID of the track to retrieve details for"
+          },
+          "adb_path": {
+            "type": "string",
+            "default": "adb",
+            "description": "Path to the adb executable"
+          }
+        },
+        "required": [
+          "track_id"
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          },
+          "track_id": {
+            "type": "integer"
+          },
+          "trackpoints": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "latitude": {
+                  "type": "number"
+                },
+                "longitude": {
+                  "type": "number"
+                },
+                "altitude": {
+                  "type": "number"
+                },
+                "timestamp": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "latitude",
+                "longitude",
+                "timestamp"
+              ]
+            }
+          },
+          "markers": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "type": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name"
+              ]
+            }
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "opentracks_db"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "list_tracks",
+      "description": "List all tracks with metadata and aggregate statistics.",
+      "operation": "read",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "adb_path": {
+            "type": "string",
+            "default": "adb",
+            "description": "Path to the adb executable"
+          }
+        },
+        "required": []
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          },
+          "tracks": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "category": {
+                  "type": "string"
+                },
+                "activity_type": {
+                  "type": "string"
+                },
+                "starttime": {
+                  "type": "integer"
+                },
+                "stoptime": {
+                  "type": "integer"
+                },
+                "totaldistance": {
+                  "type": "number"
+                },
+                "totaltime": {
+                  "type": "integer"
+                },
+                "movingtime": {
+                  "type": "integer"
+                },
+                "avgspeed": {
+                  "type": "number"
+                },
+                "avgmovingspeed": {
+                  "type": "number"
+                },
+                "maxspeed": {
+                  "type": "number"
+                },
+                "elevationgain": {
+                  "type": "number"
+                },
+                "elevationloss": {
+                  "type": "number"
+                },
+                "numpoints": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "id"
+              ]
+            }
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "opentracks_db"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "update_track_metadata",
+      "description": "Update metadata columns for a specific track.",
+      "operation": "write",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "track_id": {
+            "type": "integer",
+            "description": "The stable ID of the track to update"
+          },
+          "name": {
+            "type": "string",
+            "description": "New name for the track"
+          },
+          "description": {
+            "type": "string",
+            "description": "New description for the track"
+          },
+          "category": {
+            "type": "string",
+            "description": "New category for the track"
+          },
+          "activity_type": {
+            "type": "string",
+            "description": "New activity type"
+          },
+          "adb_path": {
+            "type": "string",
+            "default": "adb",
+            "description": "Path to the adb executable"
+          }
+        },
+        "required": [
+          "track_id"
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "opentracks_db"
+      ],
+      "safety": {}
+    }
+  ]
+}

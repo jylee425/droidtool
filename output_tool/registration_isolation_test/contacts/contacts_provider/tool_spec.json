@@ -1,0 +1,75 @@
+{
+  "app": "Contacts",
+  "tool_namespace": "contacts_provider",
+  "terminology": "Android function tool",
+  "tools": [
+    {
+      "name": "list_contacts",
+      "description": "Lists contacts, optionally filtering by display name or phone number.",
+      "operation": "read",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Optional search query to filter contacts by display name or phone number."
+          },
+          "adb_path": {
+            "type": "string",
+            "description": "Path to the adb executable.",
+            "default": "adb"
+          }
+        },
+        "required": []
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          },
+          "contacts": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "contact_id": {
+                  "type": "string"
+                },
+                "raw_contact_id": {
+                  "type": "string"
+                },
+                "display_name": {
+                  "type": "string"
+                },
+                "phone_number": {
+                  "type": "string"
+                },
+                "phone_type": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "contact_id",
+                "display_name"
+              ]
+            }
+          }
+        },
+        "required": [
+          "success",
+          "error",
+          "contacts"
+        ]
+      },
+      "state_surfaces": [
+        "content://contacts/phones/",
+        "content://com.android.contacts/data"
+      ],
+      "safety": {}
+    }
+  ]
+}

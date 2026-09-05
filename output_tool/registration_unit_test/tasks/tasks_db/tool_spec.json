@@ -1,0 +1,154 @@
+{
+  "app": "Tasks",
+  "tool_namespace": "tasks_db",
+  "terminology": "Android function tool",
+  "tools": [
+    {
+      "name": "read_tasks",
+      "description": "Read tasks from the Tasks SQLite database with dynamic schema discovery and filtering.",
+      "operation": "read",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "title_filter": {
+            "type": "string",
+            "description": "Case-insensitive substring match for the task title."
+          },
+          "notes_filter": {
+            "type": "string",
+            "description": "Case-insensitive substring match for the task notes/description."
+          },
+          "tag_filter": {
+            "type": "string",
+            "description": "Case-insensitive substring match for associated tag names."
+          },
+          "list_filter": {
+            "type": "string",
+            "description": "Case-insensitive substring match for the task list name."
+          },
+          "due_date_start": {
+            "type": "integer",
+            "description": "Inclusive start boundary for due date in epoch milliseconds."
+          },
+          "due_date_end": {
+            "type": "integer",
+            "description": "Inclusive end boundary for due date in epoch milliseconds."
+          },
+          "include_completed": {
+            "type": "boolean",
+            "description": "If true, includes completed tasks. Defaults to false."
+          },
+          "include_deleted": {
+            "type": "boolean",
+            "description": "If true, includes deleted tasks. Defaults to false."
+          },
+          "has_alarms": {
+            "type": "boolean",
+            "description": "Filter tasks that have (true) or do not have (false) associated alarms."
+          },
+          "has_attachments": {
+            "type": "boolean",
+            "description": "Filter tasks that have (true) or do not have (false) associated attachments."
+          },
+          "has_subtasks": {
+            "type": "boolean",
+            "description": "Filter tasks that have (true) or do not have (false) subtasks (parent relation)."
+          },
+          "adb_path": {
+            "type": "string",
+            "description": "Path to the adb executable.",
+            "default": "adb"
+          }
+        },
+        "required": []
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          },
+          "tasks": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "notes": {
+                  "type": "string"
+                },
+                "due_date": {
+                  "type": "integer"
+                },
+                "priority": {
+                  "type": "integer"
+                },
+                "completed_date": {
+                  "type": "integer"
+                },
+                "list_name": {
+                  "type": "string"
+                },
+                "tags": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "alarms": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "time": {
+                        "type": "integer"
+                      },
+                      "type": {
+                        "type": "integer"
+                      }
+                    }
+                  }
+                },
+                "attachments": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "file_name": {
+                        "type": "string"
+                      },
+                      "mime_type": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              },
+              "required": [
+                "id",
+                "title"
+              ]
+            }
+          }
+        },
+        "required": [
+          "success",
+          "error",
+          "tasks"
+        ]
+      },
+      "state_surfaces": [
+        "sqlite"
+      ],
+      "safety": {}
+    }
+  ]
+}

@@ -1,0 +1,302 @@
+{
+  "app": "Messages",
+  "tool_namespace": "telephony_provider",
+  "terminology": "Android function tool",
+  "tools": [
+    {
+      "name": "delete_sms_message",
+      "description": "Delete an SMS message by its durable row ID. Attempts to use the ContentProvider first, falling back to direct SQLite database modification if the provider is unavailable.",
+      "operation": "read_write",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "integer",
+            "description": "The durable row ID of the SMS message to delete."
+          },
+          "adb_path": {
+            "type": "string",
+            "description": "Path to the adb executable.",
+            "default": "adb"
+          }
+        },
+        "required": [
+          "_id"
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          },
+          "rows_affected": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "success",
+          "error",
+          "rows_affected"
+        ]
+      },
+      "state_surfaces": [
+        "content://sms",
+        "/data/data/com.android.providers.telephony/databases/mmssms.db"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "get_conversations",
+      "description": "Retrieve conversation threads grouped by thread_id, including participant details resolved from ContactsProvider, message counts, snippet, and date.",
+      "operation": "read",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "limit": {
+            "type": "integer",
+            "description": "Maximum number of conversation threads to return.",
+            "default": 20
+          },
+          "adb_path": {
+            "type": "string",
+            "description": "Path to the adb executable.",
+            "default": "adb"
+          }
+        },
+        "required": []
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          },
+          "conversations": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "thread_id": {
+                  "type": "integer"
+                },
+                "address": {
+                  "type": "string"
+                },
+                "display_name": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "message_count": {
+                  "type": "integer"
+                },
+                "snippet": {
+                  "type": "string"
+                },
+                "date": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "thread_id",
+                "address",
+                "message_count",
+                "date"
+              ]
+            }
+          }
+        },
+        "required": [
+          "success",
+          "error",
+          "conversations"
+        ]
+      },
+      "state_surfaces": [
+        "content://sms",
+        "content://com.android.contacts/data"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "insert_sent_sms",
+      "description": "Insert a new sent SMS message. Attempts to use the ContentProvider first, falling back to direct SQLite database modification if the provider is unavailable.",
+      "operation": "read_write",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string",
+            "description": "The recipient's phone number."
+          },
+          "body": {
+            "type": "string",
+            "description": "The text content of the message."
+          },
+          "date": {
+            "type": "integer",
+            "description": "Timestamp of the message in epoch milliseconds. If omitted, the current system time is used."
+          },
+          "read": {
+            "type": "integer",
+            "description": "Read status (0 = unread, 1 = read). Defaults to 1 for sent messages.",
+            "default": 1
+          },
+          "status": {
+            "type": "integer",
+            "description": "Delivery status code. Defaults to -1 (none).",
+            "default": -1
+          },
+          "adb_path": {
+            "type": "string",
+            "description": "Path to the adb executable.",
+            "default": "adb"
+          }
+        },
+        "required": [
+          "address",
+          "body"
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          },
+          "_id": {
+            "type": "integer"
+          },
+          "uri": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error",
+          "_id",
+          "uri"
+        ]
+      },
+      "state_surfaces": [
+        "content://sms/sent",
+        "/data/data/com.android.providers.telephony/databases/mmssms.db"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "list_sms_messages",
+      "description": "List SMS messages matching optional filters. Attempts to use the ContentProvider first, falling back to direct SQLite database query if the provider is unavailable.",
+      "operation": "read",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string",
+            "description": "Filter messages by sender or recipient phone number."
+          },
+          "thread_id": {
+            "type": "integer",
+            "description": "Filter messages belonging to a specific conversation thread."
+          },
+          "read": {
+            "type": "integer",
+            "description": "Filter by read status: 0 for unread, 1 for read.",
+            "enum": [
+              0,
+              1
+            ]
+          },
+          "limit": {
+            "type": "integer",
+            "description": "Maximum number of messages to return.",
+            "default": 50
+          },
+          "adb_path": {
+            "type": "string",
+            "description": "Path to the adb executable.",
+            "default": "adb"
+          }
+        },
+        "required": []
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "_id": {
+                  "type": "integer"
+                },
+                "thread_id": {
+                  "type": "integer"
+                },
+                "address": {
+                  "type": "string"
+                },
+                "body": {
+                  "type": "string"
+                },
+                "date": {
+                  "type": "integer"
+                },
+                "date_sent": {
+                  "type": "integer"
+                },
+                "type": {
+                  "type": "integer"
+                },
+                "read": {
+                  "type": "integer"
+                },
+                "seen": {
+                  "type": "integer"
+                },
+                "status": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "_id",
+                "address",
+                "body",
+                "date",
+                "type"
+              ]
+            }
+          }
+        },
+        "required": [
+          "success",
+          "error",
+          "messages"
+        ]
+      },
+      "state_surfaces": [
+        "content://sms",
+        "/data/data/com.android.providers.telephony/databases/mmssms.db"
+      ],
+      "safety": {}
+    }
+  ]
+}

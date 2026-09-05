@@ -1,0 +1,141 @@
+{
+  "app": "Retro Music",
+  "tool_namespace": "music_library_and_playlists",
+  "terminology": "Android function tool",
+  "tools": [
+    {
+      "name": "list_library_songs",
+      "description": "List songs from the MediaStore library, optionally filtered by title.",
+      "operation": "read",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "title_filter": {
+            "type": "string",
+            "description": "Optional substring filter to search songs by title."
+          },
+          "adb_path": {
+            "type": "string",
+            "default": "adb",
+            "description": "Path to the adb executable."
+          }
+        },
+        "required": []
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          },
+          "songs": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "song_id": {
+                  "type": "integer"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "artist": {
+                  "type": "string"
+                },
+                "album": {
+                  "type": "string"
+                },
+                "duration_ms": {
+                  "type": "integer"
+                },
+                "data_path": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "song_id",
+                "title"
+              ]
+            }
+          }
+        },
+        "required": [
+          "success",
+          "error",
+          "songs"
+        ]
+      },
+      "state_surfaces": [
+        "content://media/external/audio/media"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "get_playlists",
+      "description": "Retrieve a unified list of playlists from both the private database and MediaStore.",
+      "operation": "read",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "adb_path": {
+            "type": "string",
+            "default": "adb",
+            "description": "Path to the adb executable."
+          }
+        },
+        "required": []
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          },
+          "playlists": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "playlist_id": {
+                  "type": "integer"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "source": {
+                  "type": "string",
+                  "enum": [
+                    "private_db",
+                    "mediastore",
+                    "both"
+                  ]
+                }
+              },
+              "required": [
+                "playlist_id",
+                "name",
+                "source"
+              ]
+            }
+          }
+        },
+        "required": [
+          "success",
+          "error",
+          "playlists"
+        ]
+      },
+      "state_surfaces": [
+        "/data/data/code.name.monkey.retromusic/databases/playlist.db",
+        "content://media/external/audio/playlists"
+      ],
+      "safety": {}
+    }
+  ]
+}

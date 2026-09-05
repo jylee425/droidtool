@@ -1,0 +1,356 @@
+{
+  "app": "Broccoli App",
+  "tool_namespace": "broccoli_db",
+  "terminology": "Android function tool",
+  "tools": [
+    {
+      "name": "create_recipe",
+      "description": "Insert a parent recipe row and its child ingredients/directions into the discovered database tables within a single transaction.",
+      "operation": "write",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "The title or name of the recipe."
+          },
+          "description": {
+            "type": "string",
+            "description": "A short summary or description of the recipe."
+          },
+          "servings": {
+            "type": "string",
+            "description": "Number of servings or portions (e.g., '4 servings')."
+          },
+          "prep_time": {
+            "type": "string",
+            "description": "Preparation time text (e.g., '20 mins')."
+          },
+          "ingredients": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of ingredients."
+          },
+          "directions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Ordered list of preparation steps."
+          },
+          "image_name": {
+            "type": "string",
+            "description": "Optional image filename reference."
+          },
+          "adb_path": {
+            "type": "string",
+            "default": "adb",
+            "description": "Path to the adb executable."
+          }
+        },
+        "required": [
+          "title",
+          "ingredients",
+          "directions"
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The newly generated unique identifier of the created recipe."
+          },
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "/data/data/com.flauschcode.broccoli/databases/broccoli"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "delete_recipe",
+      "description": "Delete a recipe and its associated child rows (ingredients, directions) from the database.",
+      "operation": "delete",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "recipe_id": {
+            "type": "string",
+            "description": "The unique identifier of the recipe to delete."
+          },
+          "adb_path": {
+            "type": "string",
+            "default": "adb",
+            "description": "Path to the adb executable."
+          }
+        },
+        "required": [
+          "recipe_id"
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "/data/data/com.flauschcode.broccoli/databases/broccoli"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "get_recipe_details",
+      "description": "Retrieve full details of a recipe by its unique ID, including ingredients and directions.",
+      "operation": "read",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "recipe_id": {
+            "type": "string",
+            "description": "The unique identifier of the recipe."
+          },
+          "adb_path": {
+            "type": "string",
+            "default": "adb",
+            "description": "Path to the adb executable."
+          }
+        },
+        "required": [
+          "recipe_id"
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "servings": {
+            "type": "string"
+          },
+          "prep_time": {
+            "type": "string"
+          },
+          "image_name": {
+            "type": "string"
+          },
+          "is_favorite": {
+            "type": "boolean"
+          },
+          "ingredients": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "directions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "ingredients",
+          "directions",
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "/data/data/com.flauschcode.broccoli/databases/broccoli"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "list_recipes",
+      "description": "List basic metadata of recipes, optionally filtered by a search query.",
+      "operation": "read",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "search_query": {
+            "type": "string",
+            "description": "Optional search term to filter recipes by title or description."
+          },
+          "adb_path": {
+            "type": "string",
+            "default": "adb",
+            "description": "Path to the adb executable."
+          }
+        },
+        "required": []
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "recipes": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "servings": {
+                  "type": "string"
+                },
+                "prep_time": {
+                  "type": "string"
+                },
+                "image_name": {
+                  "type": "string"
+                },
+                "is_favorite": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "id",
+                "title"
+              ]
+            }
+          },
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "recipes",
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "/data/data/com.flauschcode.broccoli/databases/broccoli"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "update_recipe",
+      "description": "Update parent recipe fields and replace child ingredients/directions within a single transaction.",
+      "operation": "write",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "recipe_id": {
+            "type": "string",
+            "description": "The unique identifier of the recipe to update."
+          },
+          "title": {
+            "type": "string",
+            "description": "The updated title or name of the recipe."
+          },
+          "description": {
+            "type": "string",
+            "description": "The updated summary or description."
+          },
+          "servings": {
+            "type": "string",
+            "description": "The updated servings text."
+          },
+          "prep_time": {
+            "type": "string",
+            "description": "The updated preparation time text."
+          },
+          "ingredients": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The updated list of ingredients (replaces existing ingredients)."
+          },
+          "directions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The updated list of preparation steps (replaces existing steps)."
+          },
+          "image_name": {
+            "type": "string",
+            "description": "The updated image filename reference."
+          },
+          "is_favorite": {
+            "type": "boolean",
+            "description": "Update the favorite status of the recipe."
+          },
+          "adb_path": {
+            "type": "string",
+            "default": "adb",
+            "description": "Path to the adb executable."
+          }
+        },
+        "required": [
+          "recipe_id"
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "/data/data/com.flauschcode.broccoli/databases/broccoli"
+      ],
+      "safety": {}
+    }
+  ]
+}

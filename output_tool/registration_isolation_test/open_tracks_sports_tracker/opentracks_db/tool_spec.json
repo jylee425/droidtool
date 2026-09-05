@@ -1,0 +1,158 @@
+{
+  "app": "OpenTracks Sports Tracker",
+  "tool_namespace": "opentracks_db",
+  "terminology": "Android function tool",
+  "tools": [
+    {
+      "name": "create_track",
+      "description": "Insert a new track into the tracks table and return its stable ID.",
+      "operation": "write",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the track"
+          },
+          "description": {
+            "type": "string",
+            "description": "Optional description of the track"
+          },
+          "category": {
+            "type": "string",
+            "description": "Optional category of the track"
+          },
+          "activity_type": {
+            "type": "string",
+            "description": "Optional activity type"
+          },
+          "adb_path": {
+            "type": "string",
+            "default": "adb",
+            "description": "Path to the adb executable"
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          },
+          "track_id": {
+            "type": "integer",
+            "description": "The stable ID of the newly created track"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "opentracks_db"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "list_tracks",
+      "description": "List all tracks with metadata and aggregate statistics.",
+      "operation": "read",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "adb_path": {
+            "type": "string",
+            "default": "adb",
+            "description": "Path to the adb executable"
+          }
+        },
+        "required": []
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          },
+          "tracks": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "category": {
+                  "type": "string"
+                },
+                "activity_type": {
+                  "type": "string"
+                },
+                "starttime": {
+                  "type": "integer"
+                },
+                "stoptime": {
+                  "type": "integer"
+                },
+                "totaldistance": {
+                  "type": "number"
+                },
+                "totaltime": {
+                  "type": "integer"
+                },
+                "movingtime": {
+                  "type": "integer"
+                },
+                "avgspeed": {
+                  "type": "number"
+                },
+                "avgmovingspeed": {
+                  "type": "number"
+                },
+                "maxspeed": {
+                  "type": "number"
+                },
+                "elevationgain": {
+                  "type": "number"
+                },
+                "elevationloss": {
+                  "type": "number"
+                },
+                "numpoints": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "id"
+              ]
+            }
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "opentracks_db"
+      ],
+      "safety": {}
+    }
+  ]
+}

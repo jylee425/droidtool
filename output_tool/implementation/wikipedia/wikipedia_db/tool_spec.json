@@ -1,0 +1,485 @@
+{
+  "app": "Wikipedia",
+  "tool_namespace": "wikipedia_db",
+  "terminology": "Android function tool",
+  "tools": [
+    {
+      "name": "add_page_to_reading_list",
+      "description": "Inserts a new page into a reading list and updates the parent list's modification time and size in a single transaction.",
+      "operation": "read_write",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "listId": {
+            "type": "integer",
+            "description": "The database ID of the target reading list"
+          },
+          "wiki": {
+            "type": "string",
+            "description": "The wiki domain (e.g., 'enwiki')"
+          },
+          "lang": {
+            "type": "string",
+            "description": "Language code (e.g., 'en')"
+          },
+          "displayTitle": {
+            "type": "string",
+            "description": "The user-visible title of the page"
+          },
+          "apiTitle": {
+            "type": "string",
+            "description": "The normalized API title of the page"
+          },
+          "description": {
+            "type": "string",
+            "description": "Optional short description of the page"
+          },
+          "adb_path": {
+            "type": "string",
+            "default": "adb",
+            "description": "Path to the adb executable"
+          }
+        },
+        "required": [
+          "listId",
+          "wiki",
+          "lang",
+          "displayTitle",
+          "apiTitle"
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "pageId": {
+            "type": "integer"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "pageId",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "/data/data/org.wikipedia/databases/wikipedia.db"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "clear_history_and_searches",
+      "description": "Clears recent search history and/or visited page history from the database.",
+      "operation": "read_write",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "clear_searches": {
+            "type": "boolean",
+            "description": "Whether to clear recent search history"
+          },
+          "clear_history": {
+            "type": "boolean",
+            "description": "Whether to clear visited page history"
+          },
+          "adb_path": {
+            "type": "string",
+            "default": "adb",
+            "description": "Path to the adb executable"
+          }
+        },
+        "required": [
+          "clear_searches",
+          "clear_history"
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "/data/data/org.wikipedia/databases/wikipedia.db"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "create_reading_list",
+      "description": "Creates a new reading list in the Wikipedia database.",
+      "operation": "read_write",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "listTitle": {
+            "type": "string",
+            "description": "The title of the new reading list"
+          },
+          "description": {
+            "type": "string",
+            "description": "Optional description of the reading list"
+          },
+          "adb_path": {
+            "type": "string",
+            "default": "adb",
+            "description": "Path to the adb executable"
+          }
+        },
+        "required": [
+          "listTitle"
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "id": {
+            "type": "integer"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "id",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "/data/data/org.wikipedia/databases/wikipedia.db"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "delete_reading_list",
+      "description": "Deletes a reading list and all its associated pages in a single transaction.",
+      "operation": "read_write",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "listId": {
+            "type": "integer",
+            "description": "The database ID of the reading list to delete"
+          },
+          "adb_path": {
+            "type": "string",
+            "default": "adb",
+            "description": "Path to the adb executable"
+          }
+        },
+        "required": [
+          "listId"
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "/data/data/org.wikipedia/databases/wikipedia.db"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "get_history_and_searches",
+      "description": "Retrieves recent search queries and visited page history entries.",
+      "operation": "read",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "limit": {
+            "type": "integer",
+            "description": "Maximum number of history and search entries to return"
+          },
+          "adb_path": {
+            "type": "string",
+            "default": "adb",
+            "description": "Path to the adb executable"
+          }
+        },
+        "required": []
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "recent_searches": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "type": "string"
+                },
+                "timestamp": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "text",
+                "timestamp"
+              ]
+            }
+          },
+          "history_entries": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "lang": {
+                  "type": "string"
+                },
+                "timestamp": {
+                  "type": "integer"
+                },
+                "timeSpentSec": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "title",
+                "timestamp"
+              ]
+            }
+          },
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "recent_searches",
+          "history_entries",
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "/data/data/org.wikipedia/databases/wikipedia.db"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "get_reading_list_pages",
+      "description": "Retrieves all pages saved within a specific reading list.",
+      "operation": "read",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "listId": {
+            "type": "integer",
+            "description": "The database ID of the reading list"
+          },
+          "adb_path": {
+            "type": "string",
+            "default": "adb",
+            "description": "Path to the adb executable"
+          }
+        },
+        "required": [
+          "listId"
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "pages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer"
+                },
+                "wiki": {
+                  "type": "string"
+                },
+                "lang": {
+                  "type": "string"
+                },
+                "displayTitle": {
+                  "type": "string"
+                },
+                "apiTitle": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "offlineStatus": {
+                  "type": "integer"
+                },
+                "sizeBytes": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "id",
+                "wiki",
+                "displayTitle",
+                "apiTitle"
+              ]
+            }
+          },
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "pages",
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "/data/data/org.wikipedia/databases/wikipedia.db"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "list_reading_lists",
+      "description": "Lists all user-created reading lists with their metadata.",
+      "operation": "read",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "adb_path": {
+            "type": "string",
+            "default": "adb",
+            "description": "Path to the adb executable"
+          }
+        },
+        "required": []
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "reading_lists": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer"
+                },
+                "listTitle": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "mtime": {
+                  "type": "integer"
+                },
+                "atime": {
+                  "type": "integer"
+                },
+                "sizeBytes": {
+                  "type": "integer"
+                },
+                "remoteId": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "id",
+                "listTitle"
+              ]
+            }
+          },
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "reading_lists",
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "/data/data/org.wikipedia/databases/wikipedia.db"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "remove_page_from_reading_list",
+      "description": "Removes a page from a reading list and updates the parent list's metadata in a single transaction.",
+      "operation": "read_write",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "pageId": {
+            "type": "integer",
+            "description": "The database ID of the page entry to remove"
+          },
+          "adb_path": {
+            "type": "string",
+            "default": "adb",
+            "description": "Path to the adb executable"
+          }
+        },
+        "required": [
+          "pageId"
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "/data/data/org.wikipedia/databases/wikipedia.db"
+      ],
+      "safety": {}
+    }
+  ]
+}

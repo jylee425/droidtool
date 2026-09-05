@@ -1,0 +1,331 @@
+{
+  "app": "Joplin",
+  "tool_namespace": "joplin_sqlite",
+  "terminology": "Android function tool",
+  "tools": [
+    {
+      "name": "create_folder",
+      "description": "Inserts a new folder into the folders table. Validates parent folder, automatically sets timestamps and a matching unique textual ID.",
+      "operation": "write",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "The title of the new folder."
+          },
+          "parent_id": {
+            "type": "string",
+            "description": "Optional parent folder ID. If provided, must reference an existing folder row to prevent cyclic or invalid hierarchy."
+          },
+          "adb_path": {
+            "type": "string",
+            "default": "adb",
+            "description": "Path to the ADB executable."
+          }
+        },
+        "required": [
+          "title"
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string",
+            "description": "The generated unique textual ID of the newly created folder."
+          },
+          "title": {
+            "type": "string",
+            "description": "The title of the created folder."
+          },
+          "parent_id": {
+            "type": "string",
+            "description": "The parent folder ID assigned to the folder."
+          },
+          "created_time": {
+            "type": "integer",
+            "description": "The creation timestamp set in the database's native scale."
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "/data/data/net.cozic.joplin/databases/joplin.sqlite",
+        "/data/data/net.cozic.joplin/databases/database.sqlite"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "create_note",
+      "description": "Creates a note in the database. Also handles inserting search projections (notes_normalized) in the same transaction if the table exists.",
+      "operation": "write",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "The title of the note."
+          },
+          "body": {
+            "type": "string",
+            "description": "The markdown body content of the note."
+          },
+          "parent_id": {
+            "type": "string",
+            "description": "The parent folder ID. Must reference an existing folder row."
+          },
+          "adb_path": {
+            "type": "string",
+            "default": "adb",
+            "description": "Path to the ADB executable."
+          }
+        },
+        "required": [
+          "title",
+          "body",
+          "parent_id"
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string",
+            "description": "The generated unique textual ID of the newly created note."
+          },
+          "title": {
+            "type": "string",
+            "description": "The title of the note."
+          },
+          "parent_id": {
+            "type": "string",
+            "description": "The parent folder ID assigned to the note."
+          },
+          "created_time": {
+            "type": "integer",
+            "description": "The creation timestamp set in the database's native scale."
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "/data/data/net.cozic.joplin/databases/joplin.sqlite",
+        "/data/data/net.cozic.joplin/databases/database.sqlite"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "get_note",
+      "description": "Reads and returns complete note fields from the active database for the given exact ID selector.",
+      "operation": "read",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The exact unique textual ID of the note."
+          },
+          "adb_path": {
+            "type": "string",
+            "default": "adb",
+            "description": "Path to the ADB executable."
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "body": {
+            "type": "string"
+          },
+          "parent_id": {
+            "type": "string"
+          },
+          "created_time": {
+            "type": "integer"
+          },
+          "updated_time": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "/data/data/net.cozic.joplin/databases/joplin.sqlite",
+        "/data/data/net.cozic.joplin/databases/database.sqlite"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "list_folders",
+      "description": "Lists all directories/folders found in the active Joplin SQLite database surface.",
+      "operation": "read",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "adb_path": {
+            "type": "string",
+            "default": "adb",
+            "description": "Path to the ADB executable."
+          }
+        },
+        "required": []
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          },
+          "database_path": {
+            "type": "string"
+          },
+          "folders": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "parent_id": {
+                  "type": "string"
+                },
+                "created_time": {
+                  "type": "integer"
+                },
+                "updated_time": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "id",
+                "title",
+                "parent_id",
+                "created_time",
+                "updated_time"
+              ]
+            }
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "/data/data/net.cozic.joplin/databases/joplin.sqlite",
+        "/data/data/net.cozic.joplin/databases/database.sqlite"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "update_note",
+      "description": "Modifies properties of an existing note. Ensures atomic alignment of notes_normalized search helper if existing.",
+      "operation": "write",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The exact unique textual ID of the note to update."
+          },
+          "title": {
+            "type": "string",
+            "description": "Optional new title for the note."
+          },
+          "body": {
+            "type": "string",
+            "description": "Optional new body content."
+          },
+          "append": {
+            "type": "boolean",
+            "default": false,
+            "description": "If true, appends the body text directly without separator."
+          },
+          "parent_id": {
+            "type": "string",
+            "description": "Optional new parent folder ID. Must reference an existing folder."
+          },
+          "adb_path": {
+            "type": "string",
+            "default": "adb",
+            "description": "Path to the ADB executable."
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "updated_time": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "/data/data/net.cozic.joplin/databases/joplin.sqlite",
+        "/data/data/net.cozic.joplin/databases/database.sqlite"
+      ],
+      "safety": {}
+    }
+  ]
+}

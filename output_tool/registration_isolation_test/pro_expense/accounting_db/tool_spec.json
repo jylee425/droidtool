@@ -1,0 +1,149 @@
+{
+  "app": "ProExpense",
+  "tool_namespace": "accounting_db",
+  "terminology": "Android function tool",
+  "tools": [
+    {
+      "name": "create_expense",
+      "description": "Inserts a new expense record into the authoritative SQLite database, resolving the category label to its corresponding integer code.",
+      "operation": "write",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name, title, or description of the expense."
+          },
+          "amount_cents": {
+            "type": "integer",
+            "description": "The expense amount in integer cents (e.g., 1000 for $10.00)."
+          },
+          "category": {
+            "type": "string",
+            "description": "The exact semantic category label (e.g., 'Food', 'Transportation') or a valid integer code."
+          },
+          "note": {
+            "type": "string",
+            "description": "Optional memo or notes for the expense."
+          },
+          "adb_path": {
+            "type": "string",
+            "default": "adb",
+            "description": "Path to the adb executable."
+          }
+        },
+        "required": [
+          "name",
+          "amount_cents",
+          "category"
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "id": {
+            "type": "integer"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "id",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "/data/data/com.arduia.expense/databases/accounting.db"
+      ],
+      "safety": {}
+    },
+    {
+      "name": "list_expenses",
+      "description": "Queries and lists expenses from the database, supporting optional name and category filters.",
+      "operation": "read",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "name_filter": {
+            "type": "string",
+            "description": "Case-insensitive substring filter matched against the expense name/title/description."
+          },
+          "category_filter": {
+            "type": "string",
+            "description": "Case-insensitive category label (e.g., 'Food', 'Housing') or integer category code to filter by."
+          },
+          "adb_path": {
+            "type": "string",
+            "default": "adb",
+            "description": "Path to the adb executable."
+          }
+        },
+        "required": []
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "expenses": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "amount_cents": {
+                  "type": "integer"
+                },
+                "category_code": {
+                  "type": "integer"
+                },
+                "category_label": {
+                  "type": "string"
+                },
+                "note": {
+                  "type": "string"
+                },
+                "created_date": {
+                  "type": "string"
+                },
+                "modified_date": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "id",
+                "name",
+                "amount_cents",
+                "category_code",
+                "category_label"
+              ]
+            }
+          },
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "expenses",
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "/data/data/com.arduia.expense/databases/accounting.db"
+      ],
+      "safety": {}
+    }
+  ]
+}

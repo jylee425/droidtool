@@ -1,0 +1,63 @@
+{
+  "app": "OsmAnd",
+  "tool_namespace": "tracks_dir",
+  "terminology": "Android function tool",
+  "tools": [
+    {
+      "name": "list_saved_tracks",
+      "description": "Lists files matching *.gpx in the tracks directory. Returns an empty list if the directory does not exist or contains no GPX files.",
+      "operation": "read",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "adb_path": {
+            "type": "string",
+            "default": "adb",
+            "description": "Path to the adb executable"
+          }
+        },
+        "required": []
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          },
+          "tracks": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "filename": {
+                  "type": "string",
+                  "description": "The filename of the GPX track (e.g., 'morning_run.gpx')"
+                },
+                "file_path": {
+                  "type": "string",
+                  "description": "The absolute path to the GPX file"
+                }
+              },
+              "required": [
+                "filename",
+                "file_path"
+              ]
+            }
+          }
+        },
+        "required": [
+          "success",
+          "error",
+          "tracks"
+        ]
+      },
+      "state_surfaces": [
+        "tracks_dir"
+      ],
+      "safety": {}
+    }
+  ]
+}

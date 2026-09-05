@@ -1,0 +1,99 @@
+{
+  "app": "Photos",
+  "tool_namespace": "shared_media_state",
+  "terminology": "Android function tool",
+  "tools": [
+    {
+      "name": "list_media_files",
+      "description": "List media files in a directory, combining direct filesystem attributes with MediaStore indexed metadata.",
+      "operation": "read",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "folder_path": {
+            "type": "string",
+            "description": "The exact directory path to list, e.g., '/sdcard/Download' or '/sdcard/DCIM'."
+          },
+          "bucket_name": {
+            "type": "string",
+            "description": "Optional MediaStore bucket name to filter indexed media entries."
+          },
+          "adb_path": {
+            "type": "string",
+            "description": "Path to the adb executable.",
+            "default": "adb"
+          }
+        },
+        "required": [
+          "folder_path"
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "media_files": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "description": "MediaStore row ID if indexed."
+                },
+                "file_path": {
+                  "type": "string",
+                  "description": "The exact filesystem path of the media file."
+                },
+                "display_name": {
+                  "type": "string",
+                  "description": "The filename of the media file."
+                },
+                "mime_type": {
+                  "type": "string",
+                  "description": "The MIME/media type of the file."
+                },
+                "size_bytes": {
+                  "type": "integer",
+                  "description": "Size of the file in bytes."
+                },
+                "modified_time": {
+                  "type": "integer",
+                  "description": "Last modified timestamp."
+                },
+                "bucket_id": {
+                  "type": "integer",
+                  "description": "The MediaStore bucket ID grouping this file."
+                },
+                "bucket_name": {
+                  "type": "string",
+                  "description": "The MediaStore bucket name."
+                }
+              },
+              "required": [
+                "file_path",
+                "display_name"
+              ]
+            }
+          },
+          "success": {
+            "type": "boolean",
+            "description": "True if the operation succeeded."
+          },
+          "error": {
+            "type": "string",
+            "description": "Error message if the operation failed."
+          }
+        },
+        "required": [
+          "media_files",
+          "success",
+          "error"
+        ]
+      },
+      "state_surfaces": [
+        "shared_media_state"
+      ],
+      "safety": {}
+    }
+  ]
+}
